@@ -1,0 +1,48 @@
+{
+    "diagnostic.errorSign": "✖",
+    "diagnostic.warningSign": "⚠",
+    "diagnostic.infoSign": "ℹ",
+    "diagnostic.hintSign": "➤",
+    "suggest.noselect": false,
+    "suggest.echodocSupport": true,
+    "python.jediEnabled": false,
+    "python.formatting.blackPath":"/home/pablo-elias/.pyenv/shims/black",
+    "python.formatting.provider": "black",
+    "python.formatting.blackArgs": ["--line-length", "120"],
+    "python.sortImports.path": "/home/pablo-elias/.local/bin/isort",
+
+	"languageserver": {
+		"terraform": {
+			"command": "terraform-ls",
+            "args": ["serve"],
+			"filetypes": [
+				"terraform",
+				"tf"
+			],
+            "rootPatterns": [".terraform"],
+			"initializationOptions": {},
+			"settings": {}
+		},
+        "ccls": {
+            "command": "ccls",
+            "filetypes": [
+                "c",
+                "cpp",
+                "objc",
+                "objcpp"
+            ],
+            "rootPatterns": [
+                ".ccls",
+                "compile_commands.json",
+                ".vim/",
+                ".git/",
+                ".hg/"
+            ],
+            "initializationOptions": {
+                "cache": {
+                    "directory": "/tmp/ccls"
+                }
+            }
+        }
+    }
+}
