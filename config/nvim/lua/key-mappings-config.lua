@@ -11,7 +11,7 @@ vim.api.nvim_set_keymap("n", "<leader>Q", "<cmd>qa!<cr>", { silent = true, desc 
 
 -- File Group
 vim.api.nvim_set_keymap('n', '<Leader>ff', ':Telescope find_files<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>fF', '<Plug>(coc-format)', { noremap = true, desc = "Format Code" })
+vim.api.nvim_set_keymap('n', '<leader>fF', '<cmd>lua vim.lsp.buf.format({ async = true })<CR>', { noremap=true, desc = "Format Code", silent=true })
 vim.api.nvim_set_keymap('n', '<Leader>fg', ':lua require(\'telescope\').extensions.live_grep_args.live_grep_args()<CR>',
     { noremap = true, desc = "Grep content in Files" })
 vim.api.nvim_set_keymap('n', '<Leader>a', ':Telescope buffers sort_mru=true, ignore_current_buffer=true<CR>',
@@ -34,12 +34,10 @@ vim.api.nvim_set_keymap('n', '<Leader>fw', ':Tws<CR>', { noremap = true, desc = 
 
 
 -- Code group
-vim.api.nvim_set_keymap('n', '<Leader>cd', ':Telescope coc diagnostics<CR>',
-    { noremap = true, desc = "Code Diagnostics" })
 vim.api.nvim_set_keymap('n', '<Leader>cc', ':Copilot<CR>', { silent = true, desc = "Copilot code suggestions" })
-vim.api.nvim_set_keymap('n', '<leader>cr', '<Plug>(coc-rename)', { noremap = true, desc = "Rename Symbol Under Cursor" })
-vim.api.nvim_set_keymap('n', 'cd', '<Plug>(coc-definition)', { silent = true, desc = "Go To Definition" })
-vim.api.nvim_set_keymap('n', 'cr', ':Telescope coc references<CR>', { silent = true, desc = "Find References" })
+vim.api.nvim_set_keymap('n', '<leader>cr', '<cmd>lua vim.lsp.buf.rename()<CR>', {noremap = true, desc = "Rename Symbol Under Cursor", silent = true})
+vim.api.nvim_set_keymap('n', 'cd', '<cmd>lua vim.lsp.buf.definition()<CR>', {noremap = true, desc = "Go To Definition", silent = true})
+vim.api.nvim_set_keymap('n', 'cr', '<cmd>lua vim.lsp.buf.references()<CR>', {noremap = true, desc = "Find References", silent = true})
 
 
 -- Use k to show documentation in preview window.
@@ -60,8 +58,6 @@ vim.api.nvim_set_keymap('n', '<Leader>tc', ':VimtexCompile<CR>', { noremap = tru
 vim.api.nvim_set_keymap('n', '<Leader>tv', ':VimtexView<CR>', { noremap = true })
 -- Git Group
 vim.api.nvim_set_keymap('n', '<Leader>gs', ':Telescope lazygit<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>gd', ':Git diff<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>gd', ':Git diff<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>gb', ':Git blame<CR>', { noremap = true })
 
 -- GoTo code navigation.

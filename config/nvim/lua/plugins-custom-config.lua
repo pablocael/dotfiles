@@ -44,10 +44,6 @@ defaults = {
         },
     },
     extensions = {
-        coc = {
-            theme = "ivy",
-            prefer_locations = true, -- always use Telescope locations to preview definitions/declarations/implementations etc
-        },
         file_browser = {
             theme = "ivy",
             -- disables netrw and use telescope-file-browser in its place
@@ -137,7 +133,6 @@ require('lualine').setup {
     extensions = {}
 }
 
-require('telescope').load_extension("coc")
 require("telescope").load_extension("file_browser")
 require("telescope").load_extension("lazygit")
 require("telescope").load_extension("live_grep_args")

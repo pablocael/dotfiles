@@ -1,4 +1,3 @@
-require("coc-config")
 require("options-config")
 require("key-mappings-config")
 require("plugins-custom-config")
@@ -45,6 +44,30 @@ require("neotest").setup({
         })
     }
 })
+-- LSP Configs
+local lsp = require('lspconfig')
+local maxLineLength = 120
+lsp.pylsp.setup {
+    on_attach = function(client, bufnr)
+        local opts = { noremap = true, silent = true }
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+    end,
+    settings = {
+        pylsp = {
+            plugins = {
+                pycodestyle = { enabled = true, maxLineLength = maxLineLength },
+                pyflakes = { enabled = true , maxLineLength = maxLineLength },
+                flake8 = { enabled = true, maxLineLength = maxLineLength },
+                black = { enabled = true, lineLength = maxLineLength },
+                isort = { enabled = true }
+            }
+        }
+    }
+}
+lsp.lua_ls.setup {}
+
 
 require 'soil'.setup {
     -- If you want to use Plant UML jar version instead of the install version
@@ -71,8 +94,6 @@ return require("packer").startup(function()
             { "nvim-telescope/telescope-live-grep-args.nvim" } }
     }
 
-    -- Coc Extension for Telescope plugin
-    use "fannheyward/telescope-coc.nvim"
     use "smartpde/telescope-recent-files"
 
     -- A pluging that will provide a start page for vim, with bookmars and Last Recent Used files
@@ -104,9 +125,6 @@ return require("packer").startup(function()
 
     -- python tests
 
-    -- A pluging for intellisense that support multiple language servers
-    use { "neoclide/coc.nvim", branch = "release" }
-
     -- A style plugin for providing vscode look to nvim
     use "Mofiqul/vscode.nvim"
 
@@ -125,11 +143,20 @@ return require("packer").startup(function()
     -- A pluging for providing identation guides
     use "lukas-reineke/indent-blankline.nvim"
 
+    -- LSP language server
+    use {
+        "neovim/nvim-lspconfig",
+        config = function()
+        end
+    }
+
     -- A toggable embedded terminal for nvim
     use { "akinsho/toggleterm.nvim", tag = "*" }
 
     -- Lazygit integration for nvim
     use "kdheepak/lazygit.nvim"
+
+    use 'nvim-tree/nvim-web-devicons'
 
     -- Airline like statusline but configured in lua
     use {
