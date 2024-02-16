@@ -82,7 +82,7 @@ lsp.pylsp.setup {
         pylsp = {
             plugins = {
                 pycodestyle = { enabled = true, maxLineLength = maxLineLength },
-                pyflakes = { enabled = true , maxLineLength = maxLineLength },
+                pyflakes = { enabled = true, maxLineLength = maxLineLength },
                 flake8 = { enabled = true, maxLineLength = maxLineLength },
                 black = { enabled = true, lineLength = maxLineLength },
                 isort = { enabled = true }
@@ -107,6 +107,18 @@ require 'soil'.setup {
 return require("packer").startup(function()
     -- Packer plugin for packer :-}
     use "wbthomason/packer.nvim"
+
+    use {
+      'benlubas/molten-nvim',
+      version = '1.0.0', -- To specify a version in packer, use the git tag or commit hash
+      requires = {'3rd/image.nvim'}, -- 'dependencies' is specified as 'requires' in packer
+      config = function()
+        -- The 'init' function's content goes into the 'config' section in packer
+        vim.g.molten_image_provider = 'image.nvim'
+        vim.g.molten_output_win_max_height = 20
+      end,
+      run = ':UpdateRemotePlugins', -- 'build' commands can be specified using 'run' in packer
+    }
 
     -- Plenary is used to implement asynchoronous corountines (used by other plugins)
     use "nvim-lua/plenary.nvim"
@@ -147,7 +159,10 @@ return require("packer").startup(function()
     -- terraform syntax highlight
     use "hashivim/vim-terraform"
 
-    -- python tests
+    -- auto completion
+    use { "hrsh7th/nvim-cmp" }
+
+    -- jupyter notebooks
 
     -- A style plugin for providing vscode look to nvim
     use "Mofiqul/vscode.nvim"

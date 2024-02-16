@@ -8,6 +8,7 @@ vim.g.directory='$HOME/.config/nvim/swapfiles'
 vim.opt.listchars = {eol = '↵', tab = '>=', trail = '.'}
 vim.opt.list = true
 vim.opt.number=true
+vim.g.python3_host_prog=vim.fn.expand("~/.pyenv/versions/neovim/bin/python3")
 vim.opt.relativenumber=true
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.nuw = 6
