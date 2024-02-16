@@ -7,7 +7,6 @@ vim.opt.undofile=true
 vim.g.directory='$HOME/.config/nvim/swapfiles'
 vim.opt.listchars = {eol = '↵', tab = '>=', trail = '.'}
 vim.opt.list = true
-vim.g.python3_host_prog = '/home/pablo-elias/.pyenv/versions/3.9.16/bin/python'
 vim.opt.number=true
 vim.opt.relativenumber=true
 vim.opt.clipboard = 'unnamedplus'

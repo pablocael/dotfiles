@@ -2,6 +2,30 @@ require("options-config")
 require("key-mappings-config")
 require("plugins-custom-config")
 
+-- Set up nvim-cmp.
+local cmp = require'cmp'
+
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+    end,
+  },
+  mapping = cmp.mapping.preset.insert({
+    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-e>'] = cmp.mapping.abort(),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to false to only confirm explicitly selected items.
+  }),
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'vsnip' }, -- For vsnip users.
+  }, {
+    { name = 'buffer' },
+  })
+})
+
 local dap = require('dap')
 dap.adapters.python = {
     type = 'executable',
@@ -149,6 +173,23 @@ return require("packer").startup(function()
         config = function()
         end
     }
+
+    -- Completion engine
+    use 'hrsh7th/nvim-cmp'
+
+    -- LSP source for nvim-cmp
+    use 'hrsh7th/cmp-nvim-lsp'
+
+    -- Snippet engine
+    use 'hrsh7th/vim-vsnip'
+
+    -- Snippet source for nvim-cmp
+    use 'hrsh7th/cmp-vsnip'
+
+    -- Other common sources
+    use 'hrsh7th/cmp-buffer'
+    use 'hrsh7th/cmp-path'
+    use 'hrsh7th/cmp-cmdline'
 
     -- A toggable embedded terminal for nvim
     use { "akinsho/toggleterm.nvim", tag = "*" }
