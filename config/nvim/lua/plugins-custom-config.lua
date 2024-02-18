@@ -1,3 +1,134 @@
+if not isModuleAvailable("image") then
+    require("image").setup({
+        backend = "kitty",
+        integrations = {
+            markdown = {
+                enabled = true,
+                clear_in_insert_mode = false,
+                download_remote_images = true,
+                only_render_image_at_cursor = false,
+                filetypes = { "markdown", "vimwiki", "quarto" }, -- markdown extensions (ie. quarto) can go here
+            },
+        },
+        max_height = 1024,
+        window_overlap_clear_enabled = true,
+        window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
+    })
+end
+
+if isModuleAvailable("cmp") then
+    -- Set up nvim-cmp.
+    local cmp = require("cmp")
+
+    cmp.setup({
+      snippet = {
+        expand = function(args)
+          vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+        end,
+      },
+      mapping = cmp.mapping.preset.insert({
+        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-e>'] = cmp.mapping.abort(),
+        ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to false to only confirm explicitly selected items.
+      }),
+      sources = cmp.config.sources({
+        { name = 'nvim_lsp' },
+        { name = 'vsnip' }, -- For vsnip users.
+      }, {
+        { name = 'buffer' },
+      })
+    })
+
+end 
+
+if isModuleAvailable("neotest") then
+    require("neotest").setup({
+        adapters = {
+            require("neotest-python")({
+                -- Extra arguments for nvim-dap configuration
+                -- See https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for values
+                dap = { justMyCode = false },
+                -- Command line arguments for runner
+                -- Can also be a function to return dynamic values
+                args = { "--log-level", "DEBUG" },
+                -- Runner to use. Will use pytest if available by default.
+                -- Can be a function to return dynamic value.
+                runner = "pytest"
+
+            })
+        }
+    })
+end
+
+-- LSP Configs
+if isModuleAvailable("lspconfig") then
+    local lsp = require('lspconfig')
+    local maxLineLength = 120
+    lsp.pylsp.setup {
+        on_attach = function(client, bufnr)
+            local opts = { noremap = true, silent = true }
+            vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+            vim.api.nvim_buf_set_keymap(bufnr, 'n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+            vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+        end,
+        settings = {
+            pylsp = {
+                plugins = {
+                    pycodestyle = { enabled = true, maxLineLength = maxLineLength },
+                    pyflakes = { enabled = true, maxLineLength = maxLineLength },
+                    flake8 = { enabled = true, maxLineLength = maxLineLength },
+                    black = { enabled = true, lineLength = maxLineLength },
+                    isort = { enabled = true }
+                }
+            }
+        }
+    }
+    lsp.lua_ls.setup {}
+end
+
+if isModuleAvailable("lspconfig") then
+    require("soil").setup {
+        -- If you want to use Plant UML jar version instead of the install version
+        puml_jar = "/home/pablo-elias/bin/plantuml.jar",
+
+        -- If you want to customize the image showed when running this plugin
+        image = {
+            darkmode = false, -- Enable or disable darkmode
+            format = "png",   -- Choose between png or svg
+        }
+    }
+end
+
+if isModuleAvailable("dap") then
+    local dap = require('dap')
+    dap.adapters.python = {
+        type = 'executable',
+        command = 'python',
+        args = { '-m', 'debugpy.adapter' },
+    }
+    vim.fn.sign_define('DapBreakpoint', { text = '🛑', texthl = '', linehl = '', numhl = '' })
+    dap.configurations.python = {
+        {
+            -- The first three options are required by nvim-dap
+            type = 'python', -- the type here established the link to the adapter definition: `dap.adapters.python`
+            request = 'launch',
+            name = "Launch file",
+
+            -- Options below are for debugpy, see https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for supported options
+
+            program = "${file}", -- This configuration will launch the current file if used.
+            pythonPath = function()
+                -- debugpy supports launching an application with a different interpreter then the one used to launch debugpy itself.
+                -- The code below looks for a `venv` or `.venv` folder in the current directly and uses the python within.
+                -- You could adapt this - to for example use the `VIRTUAL_ENV` environment variable.
+                return os.getenv("VIRTUAL_ENV") .. "/bin/python" or '/usr/bin/env python'
+            end,
+        },
+    }
+end
+
 require('lazygit.utils').project_root_dir()
 local actions = require("telescope.actions")
 local lga_actions = require("telescope-live-grep-args.actions")
@@ -8,6 +139,8 @@ highlight = {
     -- additional_vim_regex_highlighting = true, -- DO NOT SET THIS
 },
 }
+
+
 
 -- Configure telescope
 require('telescope').setup {
@@ -44,6 +177,13 @@ defaults = {
         },
     },
     extensions = {
+        media_files = {
+          -- filetypes whitelist
+          -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
+          filetypes = {"png", "webp", "jpg", "jpeg"},
+          -- find command (defaults to `fd`)
+          find_cmd = "rg"
+        },
         file_browser = {
             theme = "ivy",
             -- disables netrw and use telescope-file-browser in its place
@@ -137,6 +277,7 @@ require("telescope").load_extension("file_browser")
 require("telescope").load_extension("lazygit")
 require("telescope").load_extension("live_grep_args")
 require("telescope").load_extension("recent_files")
+require('telescope').load_extension('media_files')
 
 require("yanky").setup({
     -- your configuration comes here

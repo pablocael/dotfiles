@@ -1,3 +1,22 @@
+-- setup right lua path for finding new modules
+package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?/init.lua;"
+package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua;"
+
+function isModuleAvailable(name)
+  if package.loaded[name] then
+    return true
+  else
+    for _, searcher in ipairs(package.searchers or package.loaders) do
+      local loader = searcher(name)
+      if type(loader) == 'function' then
+        package.preload[name] = loader
+        return true
+      end
+    end
+    return false
+  end
+end
+
 local prefix = vim.env.XDG_CONFIG_HOME or vim.fn.expand("~/.config")
 vim.opt.undodir = { prefix .. "/nvim/.undo//"}
 vim.opt.autoread=true
