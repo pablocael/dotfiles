@@ -79,7 +79,7 @@ if isModuleAvailable("lspconfig") then
                     pycodestyle = { enabled = true, maxLineLength = maxLineLength },
                     pyflakes = { enabled = true, maxLineLength = maxLineLength },
                     flake8 = { enabled = true, maxLineLength = maxLineLength },
-                    black = { enabled = true, lineLength = maxLineLength },
+                    black = { enabled = false, lineLength = maxLineLength },
                     isort = { enabled = true }
                 }
             }
@@ -140,7 +140,33 @@ highlight = {
 },
 }
 
+-- disable netrw at the very start of your init.lua
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
+-- optionally enable 24-bit colour
+vim.opt.termguicolors = true
+
+if isModuleAvailable("nvim-tree") then
+    -- empty setup using defaults
+    require("nvim-tree").setup()
+
+    -- OR setup with some options
+    require("nvim-tree").setup({
+      sort = {
+        sorter = "case_sensitive",
+      },
+      view = {
+        width = 30,
+      },
+      renderer = {
+        group_empty = true,
+      },
+      filters = {
+        dotfiles = true,
+      },
+    })
+end
 
 -- Configure telescope
 require('telescope').setup {

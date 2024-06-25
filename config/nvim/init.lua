@@ -2,7 +2,6 @@ require("options-config")
 require("key-mappings-config")
 require("plugins-custom-config")
 
-
 return require("packer").startup(function()
     -- Packer plugin for packer :-}
     use "wbthomason/packer.nvim"
@@ -35,6 +34,12 @@ return require("packer").startup(function()
     -- A pluging that will provide a start page for vim, with bookmars and Last Recent Used files
     use "mhinz/vim-startify"
     use "tpope/vim-fugitive"
+    use {
+      'nvim-tree/nvim-tree.lua',
+      requires = {
+        'nvim-tree/nvim-web-devicons', -- optional
+      },
+    }
 
     -- required by other plugins, a tree visualizer
     use "nvim-treesitter/nvim-treesitter"
