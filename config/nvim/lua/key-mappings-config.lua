@@ -3,6 +3,7 @@ vim.api.nvim_set_keymap('n', '<Leader>S', ':Startify <CR>', { noremap = true, de
 vim.api.nvim_set_keymap('n', '<Leader>x', ':bd<CR>', { noremap = true, desc = "Delete Current Buffer" })
 vim.api.nvim_set_keymap('n', '<Leader>w', ':w<CR>', { noremap = true, desc = "Save Current Buffer" })
 vim.api.nvim_set_keymap('n', '<Leader>ps', ':ProjectList<CR>', { noremap = true, desc = "Troggle Show Projects" })
+
 -- Saves the file if modified and quit
 vim.api.nvim_set_keymap("n", "<leader>q", "<cmd>x<cr>", { silent = true, desc = "quit current window" })
 
@@ -36,7 +37,7 @@ vim.api.nvim_set_keymap('n', '<Leader>fw', ':Tws<CR>', { noremap = true, desc = 
 -- Code group
 vim.api.nvim_set_keymap('n', '<Leader>cc', ':Copilot<CR>', { silent = true, desc = "Copilot code suggestions" })
 vim.api.nvim_set_keymap('n', '<leader>cr', '<cmd>lua vim.lsp.buf.rename()<CR>', {noremap = true, desc = "Rename Symbol Under Cursor", silent = true})
-vim.api.nvim_set_keymap('n', '<leader>t', ':NvimTreeToggle<CR>', {noremap = true, desc = "Toggle navigator tree", silent = true})
+vim.api.nvim_set_keymap('n', '<leader>t', ':NvimTreeFindFile<CR>', {noremap = true, desc = "Toggle navigator tree on current buffer", silent = true})
 vim.api.nvim_set_keymap('n', 'cd', '<cmd>lua vim.lsp.buf.definition()<CR>', {noremap = true, desc = "Go To Definition", silent = true})
 vim.api.nvim_set_keymap('n', 'cr', '<cmd>lua vim.lsp.buf.references()<CR>', {noremap = true, desc = "Find References", silent = true})
 

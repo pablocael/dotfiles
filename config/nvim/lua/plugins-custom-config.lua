@@ -1,19 +1,23 @@
-if not isModuleAvailable("image") then
-    require("image").setup({
-        backend = "kitty",
-        integrations = {
-            markdown = {
-                enabled = true,
-                clear_in_insert_mode = false,
-                download_remote_images = true,
-                only_render_image_at_cursor = false,
-                filetypes = { "markdown", "vimwiki", "quarto" }, -- markdown extensions (ie. quarto) can go here
-            },
-        },
-        max_height = 1024,
-        window_overlap_clear_enabled = true,
-        window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
-    })
+
+if isModuleAvailable("toggleterm") then
+    require("toggleterm").setup{
+      open_mapping = [[<c-\>]],
+      auto_scroll = true, -- automatically scroll to the bottom on terminal output
+      -- This field is only relevant if direction is set to 'float'
+      direction = 'float',
+      float_opts = {
+        border = 'curved',
+        -- like `size`, width, height, row, and col can be a number or function which is passed the current terminal
+        winblend = 3,
+        title_pos = 'center'
+      },
+      winbar = {
+        enabled = false,
+        name_formatter = function(term) --  term: Terminal
+          return term.name
+        end
+      },
+    }
 end
 
 if isModuleAvailable("cmp") then
@@ -41,7 +45,7 @@ if isModuleAvailable("cmp") then
       })
     })
 
-end 
+end
 
 if isModuleAvailable("neotest") then
     require("neotest").setup({
@@ -86,6 +90,7 @@ if isModuleAvailable("lspconfig") then
         }
     }
     lsp.lua_ls.setup {}
+    lsp.clangd.setup {}
 end
 
 if isModuleAvailable("lspconfig") then
