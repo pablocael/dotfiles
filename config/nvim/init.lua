@@ -31,6 +31,17 @@ return require("packer").startup(function()
 
     use "smartpde/telescope-recent-files"
 
+    use {
+      'pwntester/octo.nvim',
+      -- requeres github cli: https://github.com/cli/cli/blob/trunk/docs/install_linux.md
+      requires = {
+        'nvim-lua/plenary.nvim',
+        'nvim-telescope/telescope.nvim',
+        -- OR 'ibhagwan/fzf-lua',
+        'nvim-tree/nvim-web-devicons',
+      }
+    }
+
     -- A pluging that will provide a start page for vim, with bookmars and Last Recent Used files
     use "mhinz/vim-startify"
     use "tpope/vim-fugitive"
