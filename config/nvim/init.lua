@@ -6,17 +6,6 @@ return require("packer").startup(function()
     -- Packer plugin for packer :-}
     use "wbthomason/packer.nvim"
 
-    use {
-      'benlubas/molten-nvim',
-      version = '1.6.0', -- To specify a version in packer, use the git tag or commit hash
-      requires = {'3rd/image.nvim'}, -- 'dependencies' is specified as 'requires' in packer
-      config = function()
-        -- The 'init' function's content goes into the 'config' section in packer
-        vim.g.molten_image_provider = 'image.nvim'
-      end,
-      run = ':UpdateRemotePlugins', -- 'build' commands can be specified using 'run' in packer
-    }
-
     -- Plenary is used to implement asynchoronous corountines (used by other plugins)
     use "nvim-lua/plenary.nvim"
     use 'nvim-lua/popup.nvim'
@@ -31,16 +20,6 @@ return require("packer").startup(function()
 
     use "smartpde/telescope-recent-files"
 
-    use {
-      'pwntester/octo.nvim',
-      -- requeres github cli: https://github.com/cli/cli/blob/trunk/docs/install_linux.md
-      requires = {
-        'nvim-lua/plenary.nvim',
-        'nvim-telescope/telescope.nvim',
-        -- OR 'ibhagwan/fzf-lua',
-        'nvim-tree/nvim-web-devicons',
-      }
-    }
 
     -- A pluging that will provide a start page for vim, with bookmars and Last Recent Used files
     use "mhinz/vim-startify"
@@ -55,20 +34,6 @@ return require("packer").startup(function()
     -- required by other plugins, a tree visualizer
     use "nvim-treesitter/nvim-treesitter"
 
-    use "nvim-neotest/neotest-python"
-    -- tests plugin
-    use {
-        "nvim-neotest/neotest",
-        requires = {
-            "nvim-lua/plenary.nvim",
-            "nvim-treesitter/nvim-treesitter",
-            "antoinemadec/FixCursorHold.nvim"
-        }
-    }
-
-    use "mfussenegger/nvim-dap"
-    use "mfussenegger/nvim-dap-python"
-
     -- latex preview and support in vim
     use 'lervag/vimtex'
 
@@ -77,8 +42,6 @@ return require("packer").startup(function()
 
     -- auto completion
     use { "hrsh7th/nvim-cmp" }
-
-    -- jupyter notebooks
 
     -- A style plugin for providing vscode look to nvim
     use "Mofiqul/vscode.nvim"
@@ -108,17 +71,6 @@ return require("packer").startup(function()
     -- LSP source for nvim-cmp
     use 'hrsh7th/cmp-nvim-lsp'
 
-    -- Snippet engine
-    use 'hrsh7th/vim-vsnip'
-
-    -- Snippet source for nvim-cmp
-    use 'hrsh7th/cmp-vsnip'
-
-    -- Other common sources
-    use 'hrsh7th/cmp-buffer'
-    use 'hrsh7th/cmp-path'
-    use 'hrsh7th/cmp-cmdline'
-
     -- A toggable embedded terminal for nvim
     use { "akinsho/toggleterm.nvim", tag = "*" }
 
@@ -140,12 +92,6 @@ return require("packer").startup(function()
             require "surround".setup { mappings_style = "surround" }
         end
     }
-
-    -- puml support
-    use 'javiorfo/nvim-soil'
-
-    -- Optional for puml syntax highlighting:
-    use 'javiorfo/nvim-nyctophilia'
 
     -- install without yarn or npm
     use({

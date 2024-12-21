@@ -2,7 +2,6 @@ vim.api.nvim_set_keymap('n', '<esc><esc>', ':silent! nohls<cr>', { noremap = tru
 vim.api.nvim_set_keymap('n', '<Leader>S', ':Startify <CR>', { noremap = true, desc = "Toggle Startify Home Page" })
 vim.api.nvim_set_keymap('n', '<Leader>x', ':bd<CR>', { noremap = true, desc = "Delete Current Buffer" })
 vim.api.nvim_set_keymap('n', '<Leader>w', ':w<CR>', { noremap = true, desc = "Save Current Buffer" })
-vim.api.nvim_set_keymap('n', '<Leader>ps', ':ProjectList<CR>', { noremap = true, desc = "Troggle Show Projects" })
 
 -- Saves the file if modified and quit
 vim.api.nvim_set_keymap("n", "<leader>q", "<cmd>x<cr>", { silent = true, desc = "quit current window" })
@@ -37,7 +36,7 @@ vim.api.nvim_set_keymap('n', '<Leader>fw', ':Tws<CR>', { noremap = true, desc = 
 -- Code group
 vim.api.nvim_set_keymap('n', '<Leader>cc', ':Copilot<CR>', { silent = true, desc = "Copilot code suggestions" })
 vim.api.nvim_set_keymap('n', '<leader>cr', '<cmd>lua vim.lsp.buf.rename()<CR>', {noremap = true, desc = "Rename Symbol Under Cursor", silent = true})
-vim.api.nvim_set_keymap('n', '<leader>t', ':NvimTreeFindFile<CR>', {noremap = true, desc = "Toggle navigator tree on current buffer", silent = true})
+vim.api.nvim_set_keymap('n', '<leader>cf', ':NvimTreeFindFile<CR>', {noremap = true, desc = "Toggle navigator tree on current buffer", silent = true})
 vim.api.nvim_set_keymap('n', 'cd', '<cmd>lua vim.lsp.buf.definition()<CR>', {noremap = true, desc = "Go To Definition", silent = true})
 vim.api.nvim_set_keymap('n', 'cr', '<cmd>lua vim.lsp.buf.references()<CR>', {noremap = true, desc = "Find References", silent = true})
 
@@ -53,12 +52,8 @@ function show_documentation()
     end
 end
 
-vim.api.nvim_set_keymap('n', 'ck', ':call v:lua.show_documentation()<CR>', { silent = true })
 
--- Latex group
-vim.api.nvim_set_keymap('n', '<Leader>tc', ':VimtexCompile<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>tv', ':VimtexView<CR>', { noremap = true })
--- Git Group
+-- Git Group 
 vim.api.nvim_set_keymap('n', '<Leader>gs', ':Telescope lazygit<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>gb', ':Git blame<CR>', { noremap = true })
 
@@ -68,9 +63,9 @@ vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
 vim.keymap.set("n", "<c-n>", "<Plug>(YankyCycleForward)")
 vim.keymap.set("n", "<c-p>", "<Plug>(YankyCycleBackward)")
 
--- CoC commands mappings
-vim.api.nvim_set_keymap('n', '[g', '<Plug>(coc-diagnostic-prev)', { silent = true })
-vim.api.nvim_set_keymap('n', ']g', '<Plug>(coc-diagnostic-next)', { silent = true })
+-- CoC commands mappings  
+vim.api.nvim_set_keymap('n', '[g', '<Plug>(coc-diagnostic-prev)', {silent = true})
+vim.api.nvim_set_keymap('n', ']g', '<Plug>(coc-diagnostic-next)', {silent = true})
 
 vim.cmd([[
 function!   QuickFixOpenAll()
@@ -87,22 +82,8 @@ function!   QuickFixOpenAll()
     endfor
 endfunction
 ]])
-vim.api.nvim_set_keymap('n', '<leader>ka', ':call QuickFixOpenAll()<CR>', { noremap = true, silent = false })
-vim.api.nvim_set_keymap('n', '<leader>kr', ':Qfreplace<CR>', { noremap = true, silent = false })
 
 whichkey = require("which-key")
-whichkey.register({
-    f = {
-        name = "File", -- optional group name
-    },
-    c = {
-        name = "Code"
-    },
-
-    g = {
-        name = "Git"
-    },
-}, { prefix = "<leader>" })
 
 whichkey.setup({
     plugins = {
@@ -124,22 +105,17 @@ whichkey.setup({
             g = true,      -- bindings for prefixed with g
         },
     },
-    -- add operators that will trigger motion and text object completion
-    -- to enable all native operators, set the preset / operators plugin above
-    operators = { gc = "Comments" },
-    key_labels = {
-        -- override the label used to display some keys. It doesn't effect WK in any other way.
-        -- For example:
-        -- ["<space>"] = "SPC",
-        -- ["<cr>"] = "RET",
-        -- ["<tab>"] = "TAB",
-    },
-    motions = {
-        count = true,
-    },
     icons = {
         breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
         separator = "➜", -- symbol used between a key and it's label
         group = "(+) ",  -- symbol prepended to a group
     },
 })
+whichkey.add(
+  {
+    { "<leader>c", group = "Code" },
+    { "<leader>f", group = "File" },
+    { "<leader>g", group = "Git" },
+    { "<leader>l", group = "LaTeX" },
+  }
+)
