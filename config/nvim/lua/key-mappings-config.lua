@@ -19,6 +19,12 @@ vim.api.nvim_set_keymap('n', '<Leader>a', ':Telescope buffers sort_mru=true, ign
 vim.api.nvim_set_keymap('n', '<Leader>fs', ':Telescope file_browser path=%:p:h select_buffer=true<CR>',
     { noremap = true, desc = 'Toggle File Browser' }
 )
+vim.api.nvim_set_keymap('n', '<Leader>cd', ':lua require(\'telescope.builtin\').diagnostics({ bufnr = 0 })<CR>',
+    { noremap = true, desc = 'Show LSP Diagnostics for current buffer' }
+)
+vim.api.nvim_set_keymap('n', '<Leader>cD', ':lua require(\'telescope.builtin\').diagnostics()<CR>',
+    { noremap = true, desc = 'Show LSP Diagnostics for all files in this project' }
+)
 
 
 -- Clear trailing spaces
