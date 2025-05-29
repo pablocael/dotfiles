@@ -1,4 +1,3 @@
-
 if isModuleAvailable("jupytext") then
 
     require("toggleterm").setup{
@@ -209,42 +208,38 @@ end
 
 if isModuleAvailable("dap") then
     local dap = require('dap')
-    dap.adapters.python = {
-        type = 'executable',
-        command = 'python',
-        args = { '-m', 'debugpy.adapter' },
-    }
-    vim.fn.sign_define('DapBreakpoint', { text = '🛑', texthl = '', linehl = '', numhl = '' })
+    local dapui = require('dapui')
+    local dap_python = require('dap-python')
+    dap_python.setup('/home/pablo-elias/.pyenv/shims/python')
+    -- Override launch config to set proper working directory
     dap.configurations.python = {
         {
-            -- The first three options are required by nvim-dap
-            type = 'python', -- the type here established the link to the adapter definition: `dap.adapters.python`
+            type = 'python',
             request = 'launch',
             name = "Launch file",
 
-            -- Options below are for debugpy, see https://github.com/microsoft/debugpy/wiki/Debug-configuration-settings for supported options
-
-            program = "${file}", -- This configuration will launch the current file if used.
-            pythonPath = function()
-                -- debugpy supports launching an application with a different interpreter then the one used to launch debugpy itself.
-                -- The code below looks for a `venv` or `.venv` folder in the current directly and uses the python within.
-                -- You could adapt this - to for example use the `VIRTUAL_ENV` environment variable.
-                return os.getenv("VIRTUAL_ENV") .. "/bin/python" or '/usr/bin/env python'
+            program = "${file}",         -- Use the current file
+            pythonPath = function()      -- Use the correct Python
+                return python_path
             end,
-        },
+            cwd = vim.fn.getcwd(),       -- 🧠 Set base path (you can customize this)
+            justMyCode = true,
+        }
     }
-end
 
-if isModuleAvailable("null-ls") then
-    local null_ls = require("null-ls")
+    -- Optional UI setup
+    dapui.setup()
 
-    null_ls.setup({
-        sources = {
-            null_ls.builtins.diagnostics.pycodestyle.with({
-                extra_args = { "--max-line-length", "120" },
-            }),
-        },
-    })
+    -- Automatically open/close dap-ui on start/stop
+    dap.listeners.after.event_initialized["dapui_config"] = function()
+      dapui.open()
+    end
+    dap.listeners.before.event_terminated["dapui_config"] = function()
+      dapui.close()
+    end
+    dap.listeners.before.event_exited["dapui_config"] = function()
+      dapui.close()
+    end
 end
 
 require('lazygit.utils').project_root_dir()

@@ -83,7 +83,7 @@ vim.cmd('highlight ExtraWhitespace ctermbg=red guibg=red')
 vim.cmd('match ExtraWhitespace /\\s\\+$/')
 
 vim.g.startify_enable_special         = 0
-vim.g.startify_enable_unsafe          = 1
+vim.g.startify_enable_unsafe 	      = 0
 vim.g.startify_files_number           = 15
 vim.g.startify_relative_path          = 1
 vim.g.startify_change_to_dir          = 1
@@ -133,6 +133,12 @@ function s_sy_add_bookmark(bookmark)
 end
 
 vim.cmd('command! -nargs=1 StartifyAddBookmark call v:lua.s_sy_add_bookmark(<q-args>)')
+vim.g.startify_custom_filter = function(file)
+  local ok, _ = pcall(function()
+    return file:match("[^%w/_%-%.]") == nil
+  end)
+  return ok
+end
 
 -- set termguicolors to enable highlight groups
 vim.opt.termguicolors = true

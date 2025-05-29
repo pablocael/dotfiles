@@ -1,3 +1,18 @@
+-- Debug
+vim.keymap.set('n', '<leader>dc', require'dap'.continue)
+vim.keymap.set('n', '<leader>ds', require'dap'.step_over)
+vim.keymap.set('n', '<leader>di', require'dap'.step_into)
+vim.keymap.set('n', '<leader>do', require'dap'.step_out)
+vim.keymap.set('n', '<Leader>db', require'dap'.toggle_breakpoint)
+vim.keymap.set('n', '<Leader>dB', function()
+  require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))
+end)
+vim.keymap.set('n', '<Leader>lp', function()
+  require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))
+end)
+vim.keymap.set('n', '<Leader>dr', require'dap'.repl.open)
+vim.keymap.set('n', '<Leader>dl', require'dap'.run_last)
+
 vim.api.nvim_set_keymap('n', '<esc><esc>', ':silent! nohls<cr>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>S', ':Startify <CR>', { noremap = true, desc = "Toggle Startify Home Page" })
 vim.api.nvim_set_keymap('n', '<Leader>x', ':bd<CR>', { noremap = true, desc = "Delete Current Buffer" })
