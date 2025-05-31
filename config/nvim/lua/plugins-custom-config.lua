@@ -216,15 +216,26 @@ if isModuleAvailable("dap") then
         {
             type = 'python',
             request = 'launch',
-            name = "Launch file",
+            name = "Launch with arguments",
 
-            program = "${file}",         -- Use the current file
-            pythonPath = function()      -- Use the correct Python
-                return python_path
+            program = "${file}", -- Debug current file
+
+            pythonPath = function()
+                local venv = os.getenv("VIRTUAL_ENV")
+                return venv and venv .. "/bin/python" or "python"
             end,
+
+            -- Prompt for custom args
+            args = function()
+                local input = vim.fn.input("Arguments: ")
+                return vim.fn.split(input, " ", true)
+            end,
+
             cwd = vim.fn.getcwd(),       -- 🧠 Set base path (you can customize this)
+
             justMyCode = true,
-        }
+            console = "integratedTerminal",  -- Optional: show stdin
+        },
     }
 
     -- Optional UI setup

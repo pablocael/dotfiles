@@ -1,10 +1,11 @@
 # vim:fileencoding=utf-8:foldmethod=marker
 # https://sw.kovidgoyal.net/kitty/conf/
+enable_audio_bell no
 
 # To get a full list of supported fonts use the `kitty +list-fonts` command.
 font_family     IosevkaTerm Nerd Font
 #font_family      JetBrainsMono Nerd Font
-font_size 14.0
+font_size 16.0
 
 scrollback_lines 80000
 
@@ -269,7 +270,7 @@ map ctrl+a>shift+d     debug_config
 
 
 # BEGIN_KITTY_THEME
-# Ayu
+# Catppuccin-Frappe
 include current-theme.conf
 # END_KITTY_THEME
 
@@ -284,3 +285,4 @@ map f3 kitten hints --program '*'
 # map double ctrl+a to ctrl+a (home)
 map ctrl+a>ctrl+a send_text all \x01
 
+map ctrl+q no_op

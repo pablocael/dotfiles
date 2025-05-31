@@ -12,6 +12,18 @@ vim.keymap.set('n', '<Leader>lp', function()
 end)
 vim.keymap.set('n', '<Leader>dr', require'dap'.repl.open)
 vim.keymap.set('n', '<Leader>dl', require'dap'.run_last)
+vim.keymap.set('n', '<leader>dv', function()
+  local variable = vim.fn.expand('<cword>')
+  require('dap.ui.widgets').hover(variable)
+end, { desc = "DAP inspect variable under cursor" })
+vim.keymap.set('n', '<esc>', function()
+  for _, win in pairs(vim.api.nvim_list_wins()) do
+    local config = vim.api.nvim_win_get_config(win)
+    if config.relative ~= "" then
+      vim.api.nvim_win_close(win, true)
+    end
+  end
+end, { desc = "DAP Close All Float Windows" })
 
 vim.api.nvim_set_keymap('n', '<esc><esc>', ':silent! nohls<cr>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>S', ':Startify <CR>', { noremap = true, desc = "Toggle Startify Home Page" })
