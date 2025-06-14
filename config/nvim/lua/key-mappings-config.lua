@@ -85,9 +85,8 @@ function show_documentation()
     end
 end
 
-
 -- Git Group 
-vim.api.nvim_set_keymap('n', '<Leader>gs', ':Telescope lazygit<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<Leader>gs', ':lua require(\'neogit\').open({kind=\'floating\'})<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<Leader>gb', ':Git blame<CR>', { noremap = true })
 
 -- GoTo code navigation.

@@ -18,7 +18,7 @@ return require("packer").startup(function()
 	-- Plugins that provides floating panels and supports different extensions
 	use {
 		"nvim-telescope/telescope.nvim",
-		requires = { { "nvim-lua/plenary.nvim" }, { "kdheepak/lazygit.nvim" },
+		requires = { { "nvim-lua/plenary.nvim" },
 		{ "nvim-telescope/telescope-live-grep-args.nvim" } }
 	}
 
@@ -27,7 +27,16 @@ return require("packer").startup(function()
 
 	-- A pluging that will provide a start page for vim, with bookmars and Last Recent Used files
 	use "mhinz/vim-startify"
-	use "tpope/vim-fugitive"
+	use {
+		"NeogitOrg/neogit",
+		dependencies = {
+			"nvim-lua/plenary.nvim",         -- required
+			"sindrets/diffview.nvim",        -- optional - Diff integration
+
+			-- Only one of these is needed.
+			"nvim-telescope/telescope.nvim" -- optional
+		},
+	}
 	use {
 		'nvim-tree/nvim-tree.lua',
 		requires = {
@@ -37,21 +46,6 @@ return require("packer").startup(function()
 
 	-- execute code chunks from nvim
 	use {'Vigemus/iron.nvim'}
-
-	use {
-		'goerz/jupytext.nvim',
-		version = '0.2.0',
-        opts = {
-          jupytext = 'jupytext',
-          format = "markdown",
-          update = true,
-          filetype = require("jupytext").get_filetype,
-          new_template = require("jupytext").default_new_template(),
-          sync_patterns = { '*.md', '*.py', '*.jl', '*.R', '*.Rmd', '*.qmd' },
-          autosync = true,
-          handle_url_schemes = true,
-        }
-	}
 
     use 'mfussenegger/nvim-dap'                          -- Core DAP support
     use 'rcarriga/nvim-dap-ui'                           -- Nice UI for dap
@@ -100,9 +94,6 @@ return require("packer").startup(function()
 
 	-- A toggable embedded terminal for nvim
 	use { "akinsho/toggleterm.nvim", tag = "*" }
-
-	-- Lazygit integration for nvim
-	use "kdheepak/lazygit.nvim"
 
 	use 'nvim-tree/nvim-web-devicons'
 

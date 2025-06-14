@@ -253,7 +253,6 @@ if isModuleAvailable("dap") then
     end
 end
 
-require('lazygit.utils').project_root_dir()
 local actions = require("telescope.actions")
 local lga_actions = require("telescope-live-grep-args.actions")
 
@@ -323,6 +322,7 @@ defaults = {
                 require("telescope.builtin").resume()
             end,
             ["<C-f>"] = actions.send_to_qflist,
+            ["<M-d>"] = require("telescope._extensions.file_browser.actions").remove,
             },
         },
     },
@@ -424,7 +424,6 @@ require('lualine').setup {
 }
 
 require("telescope").load_extension("file_browser")
-require("telescope").load_extension("lazygit")
 require("telescope").load_extension("live_grep_args")
 require("telescope").load_extension("recent_files")
 require('telescope').load_extension('media_files')
