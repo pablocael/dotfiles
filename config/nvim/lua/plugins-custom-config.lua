@@ -125,17 +125,16 @@ vim.keymap.set('n', '<space>rh', '<cmd>IronHide<cr>')
 
 if isModuleAvailable("cmp") then
     -- Set up nvim-cmp.
-    local cmp = require'cmp'
-
+    --
+    local cmp = require('cmp')
     cmp.setup({
-      sources = {
-        { name = 'path' },  -- Enable file and directory completion
-        { name = 'buffer' },
-        { name = 'nvim_lsp' },
-      },
       mapping = cmp.mapping.preset.insert({
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        ['<CR>'] = cmp.mapping.confirm({ select = true }),  -- Enter accepts choice
+      }),
+      sources = cmp.config.sources({
+        { name = 'nvim_lsp' },   -- keep your other sources
+        { name = 'path', option = { trailing_slash = true } }, -- filesystem paths
+        { name = 'buffer' },
       }),
     })
 
@@ -163,6 +162,8 @@ end
 -- LSP Configs
 if isModuleAvailable("lspconfig") then
   local lsp = require("lspconfig")
+
+  lsp.ts_ls.setup {}
 
   lsp.pyright.setup({
     on_attach = function(client, bufnr)

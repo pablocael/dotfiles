@@ -36,6 +36,7 @@ vim.opt.shiftwidth=4
 vim.opt.expandtab=true
 vim.opt.cursorline=true
 vim.opt.cursorcolumn=true
+vim.opt.colorcolumn = "120"
 
 vim.g.latstatus=2
 vim.g.mapleader = ","

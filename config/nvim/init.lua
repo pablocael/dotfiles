@@ -62,7 +62,12 @@ return require("packer").startup(function()
 	use "hashivim/vim-terraform"
 
 	-- auto completion
-	use { "hrsh7th/nvim-cmp" }
+    use { 'hrsh7th/nvim-cmp',
+    requires = {
+        'hrsh7th/cmp-nvim-lsp',
+        'hrsh7th/cmp-path',      -- <-- this exact string
+        'hrsh7th/cmp-buffer',
+    } }
 
 	-- A style plugin for providing vscode look to nvim
 	use "Mofiqul/vscode.nvim"
