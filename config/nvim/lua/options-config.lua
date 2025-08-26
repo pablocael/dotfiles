@@ -38,6 +38,8 @@ vim.opt.cursorline=true
 vim.opt.cursorcolumn=true
 vim.opt.colorcolumn = "120"
 
+vim.g.bookmark_sign = '🔖'
+vim.g.bookmark_highlight_lines = 1
 vim.g.latstatus=2
 vim.g.mapleader = ","
 vim.g.nofixendofline=true

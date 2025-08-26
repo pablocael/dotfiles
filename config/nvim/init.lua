@@ -21,9 +21,9 @@ return require("packer").startup(function()
 		requires = { { "nvim-lua/plenary.nvim" },
 		{ "nvim-telescope/telescope-live-grep-args.nvim" } }
 	}
+    use "MattesGroeger/vim-bookmarks"
 
 	use "smartpde/telescope-recent-files"
-
 
 	-- A pluging that will provide a start page for vim, with bookmars and Last Recent Used files
 	use "mhinz/vim-startify"
