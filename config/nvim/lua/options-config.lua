@@ -17,6 +17,16 @@ function isModuleAvailable(name)
   end
 end
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "javascript", "typescript" },
+  callback = function()
+    vim.opt_local.tabstop = 2
+    vim.opt_local.shiftwidth = 2
+    vim.opt_local.softtabstop = 2
+    vim.opt_local.expandtab = true
+  end,
+})
+
 local prefix = vim.env.XDG_CONFIG_HOME or vim.fn.expand("~/.config")
 vim.opt.undodir = { prefix .. "/nvim/.undo//"}
 vim.opt.autoread=true
@@ -168,3 +178,30 @@ end
 
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+
+-- Run your custom task and capture into quickfix
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = "*",
+  callback = function()
+    -- project-local is nicer, but global is fine to start:
+    vim.opt.makeprg = "poetry run invoke lint"
+    -- Accepts many common formats: file:line:col: msg  OR file:line: msg
+    vim.opt.errorformat = table.concat({
+      "%f:%l:%c:%m",   -- ruff/flake8/pylint with columns
+      "%f:%l:%m",      -- tools without columns
+      "%-G%.%#"        -- ignore unmatched lines
+    }, ",")
+  end,
+})
+
+-- Handy commands
+vim.api.nvim_create_user_command("Lint", function()
+  vim.cmd("make")   -- runs makeprg
+  vim.cmd("copen")  -- open quickfix
+end, {})
+
+-- Optional: auto-open quickfix if there are errors
+vim.api.nvim_create_autocmd("QuickFixCmdPost", {
+  pattern = {"make"},
+  callback = function() vim.cmd("cwindow") end,
+})

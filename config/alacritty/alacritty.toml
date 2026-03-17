@@ -1,0 +1,25 @@
+[general]
+import = [
+  "~/.config/alacritty/themes/themes/gruvbox_dark.toml"
+]
+live_config_reload = true
+
+[window]
+opacity = 0.95
+padding = { x = 10, y = 10 }
+dynamic_padding = true
+startup_mode = "Maximized"
+
+[font]
+size = 12.5
+
+normal = { family = "Hack", style = "Regular" }
+bold = { family = "Hack", style = "Bold" }
+italic = { family = "Hack", style = "Italic" }
+bold_italic = { family = "Hack", style = "Bold Italic" }
+
+[cursor]
+style = { shape = "Beam", blinking = "Off" }
+
+[terminal]
+shell = { program = "/usr/bin/tmux", args = ["new-session", "-A", "-s", "main"] }
