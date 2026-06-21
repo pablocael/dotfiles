@@ -21,7 +21,7 @@ STORE="$REPO/home"
 FILES=(
   # shell / env
   .bashrc .bash_logout .profile .bash_aliases .inputrc .dircolors
-  .fzf.bash .gitconfig .gitconfig-personal
+  .fzf.bash
   .fonts.conf .gtkrc-2.0
   # tmux
   .tmux.conf
