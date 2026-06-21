@@ -1,0 +1,43 @@
+[General]
+LastUsedVersion=210800
+SideBarPage=operations
+
+[MainWindow]
+MenuBar=Disabled
+
+[Print]
+PrintHeight=20.38
+
+[Recent Files]
+File1[$e]=/mnt/data/Personal/development/futevolei-app/img/escudo-estrela-kit.svg
+File10[$e]=$HOME/data/Personal/development/mymelu.chat/docs/findings/black-personas-review-2026-06-20/trial_lawyer_m.png
+File2[$e]=$HOME/data/Personal/development/mymelu.chat/docs/findings/black-personas-review-2026-06-20/attending_doctor.png
+File3[$e]=$HOME/data/Personal/development/mymelu.chat/docs/findings/black-personas-review-2026-06-20/attending_doctor-expr-1.png
+File4[$e]=$HOME/data/Personal/development/mymelu.chat/docs/findings/black-personas-review-2026-06-20/attending_doctor-expr-2.png
+File5[$e]=$HOME/data/Personal/development/mymelu.chat/docs/findings/black-personas-review-2026-06-20/attending_doctor-expr-3.png
+File6[$e]=$HOME/data/Personal/development/mymelu.chat/docs/findings/black-personas-review-2026-06-20/trial_lawyer_m-expr-1.png
+File7[$e]=$HOME/data/Personal/development/mymelu.chat/docs/findings/black-personas-review-2026-06-20/trial_lawyer_m-expr-2.png
+File8[$e]=$HOME/data/Personal/development/mymelu.chat/docs/findings/black-personas-review-2026-06-20/trial_lawyer_m-expr-3.png
+File9[$e]=$HOME/data/Personal/development/mymelu.chat/docs/findings/black-personas-review-2026-06-20/_existing_resident_doctor.png
+Name1[$e]=escudo-estrela-kit.svg
+Name10[$e]=trial_lawyer_m.png
+Name2[$e]=attending_doctor.png
+Name3[$e]=attending_doctor-expr-1.png
+Name4[$e]=attending_doctor-expr-2.png
+Name5[$e]=attending_doctor-expr-3.png
+Name6[$e]=trial_lawyer_m-expr-1.png
+Name7[$e]=trial_lawyer_m-expr-2.png
+Name8[$e]=trial_lawyer_m-expr-3.png
+Name9[$e]=_existing_resident_doctor.png
+
+[SemanticInfoDialog]
+2560x1440 screen: Height=289
+2560x1440 screen: Width=284
+
+[SideBar]
+InformationSplitterSizes=220,255
+IsVisible ViewMode=true
+SideBarSplitterSizes=210,1552
+
+[ThumbnailView]
+ThumbnailSize=132

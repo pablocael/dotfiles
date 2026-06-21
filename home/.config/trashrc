@@ -1,0 +1,7 @@
+[NetworkShares]
+NextID=2
+nfs://192.168.0.7//srv/data:/mnt/data-server=0
+smb://192.168.15.50/DataPablo:/mnt/data-server=1
+
+[Status]
+Empty=false

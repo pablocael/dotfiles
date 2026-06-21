@@ -1,0 +1,11 @@
+[ExtractDialog]
+2560x1440 screen: Height=698
+2560x1440 screen: Width=1575
+DirHistory[$e]=$HOME/data/Personal/tools/,/mnt/data/storage/comfyui/workflows/test/,/mnt/data-server/comfyui/workflows/test/,/mnt/data/development/bin/,/media/pelias/data/pwork/comfyui/workflows/video/WAN22/test/,/media/pelias/data/pwork/comfyui/workflows/test/,/media/pelias/data/pwork/,$HOME/Personal/pwork/comfyui/workflows/video/WAN22/,/media/pelias/data/pwork/ComfyUI/models/loras/WAN22/,$HOME/Personal/datap/ComfyUI/user/default/workflows/
+
+[General]
+LockSidebar=true
+ShowSidebar=true
+
+[MainWindow]
+StatusBar=Disabled

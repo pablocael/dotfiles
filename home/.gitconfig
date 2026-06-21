@@ -1,0 +1,12 @@
+[user]
+	email = pablo.cael@gmail.com
+	name = Pablo C. Elias
+[safe]
+	directory = /mnt/data/Personal/development/jellyfin-web
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[includeIf "gitdir:/mnt/data/Personal/development/"]
+	path = /home/pelias/.gitconfig-personal

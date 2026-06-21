@@ -1,0 +1,13 @@
+[571a3138-d845-4223-8a50-9b71769bd867]
+Description=Window settings for python3
+opacityactive=85
+opacityactiverule=2
+title=sys-mon
+types=1
+wmclass=python3.12 python3
+wmclasscomplete=true
+wmclassmatch=1
+
+[General]
+count=1
+rules=571a3138-d845-4223-8a50-9b71769bd867

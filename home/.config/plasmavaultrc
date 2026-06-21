@@ -1,0 +1,15 @@
+[/mnt/data/vaults/stv]
+activities=
+backend=gocryptfs
+lastError=Unknown device (code: 1)
+lastStatus=2
+mountPoint=/home/pelias/stv
+name=stv
+offlineOnly=false
+
+[EncryptedDevices]
+/mnt/data/vaults/stv=true
+
+[UI-notice]
+SkipNotice-cryfs-message=false
+SkipNotice-gocryptfs-message=false

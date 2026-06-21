@@ -1,0 +1,8 @@
+[FileDialogSize]
+2560x1440 screen: Height=697
+2560x1440 screen: Width=1280
+
+[KFileDialog Settings]
+Recent Files[$e]=file:$HOME/Documents/MuseScore3/Partitura/Azul_exercicio.mscz,file:$HOME/Documents/MuseScore3/Partitura/Azul_exercicio.mscz,file:$HOME/Documents/Azul_exercicio.pdf
+Recent URLs[$e]=file:$HOME/Documents/MuseScore3/Partitura/,file:$HOME/Documents/,file:$HOME/Documents/MuseScore3/Scores/,file:$HOME/,file:$HOME/Documents/MuseScore3/
+detailViewIconSize=16

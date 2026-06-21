@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+export PATH="$HOME/.fzf/bin:$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
+
+FZF=$(command -v fzf) || { echo "fzf not found"; sleep 2; exit 1; }
+
+selected=$(
+  tmux list-windows -a \
+    -F '#{session_name}  #{window_index}  #{window_name}  #{pane_current_path}' \
+  | "$FZF" \
+      --reverse \
+      --prompt='  ' \
+      --header='enter: switch  ctrl-r: rename  ctrl-k: kill  esc: cancel' \
+      --bind 'ctrl-k:execute-silent(
+          win=$(echo {} | awk "{print \$1\":\"\$2}")
+          tmux kill-window -t "$win"
+        )+reload(tmux list-windows -a -F "#{session_name}  #{window_index}  #{window_name}  #{pane_current_path}")' \
+      --bind 'ctrl-r:execute(
+          win=$(echo {} | awk "{print \$1\":\"\$2}")
+          cur=$(echo {} | awk "{print \$3}")
+          tmux command-prompt -I "$cur" -p "rename window:" \
+            "rename-window -t \"$win\" \"%%\""
+        )+reload(tmux list-windows -a -F "#{session_name}  #{window_index}  #{window_name}  #{pane_current_path}")'
+)
+
+[ -z "$selected" ] && exit 0
+
+session=$(echo "$selected" | awk '{print $1}')
+window=$(echo "$selected"  | awk '{print $2}')
+tmux switch-client -t "${session}:${window}"

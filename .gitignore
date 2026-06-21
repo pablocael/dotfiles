@@ -1,0 +1,20 @@
+# --- never commit secrets (defense in depth; sync.sh also excludes these) ---
+*id_rsa*
+*id_ed25519*
+*.pem
+*.key
+*token*
+*secret*
+*credential*
+*.kwl
+kwallet*/
+
+# --- editor / runtime noise ---
+*.swp
+*.swo
+*~
+.undo/
+.swp/
+.backup/
+__pycache__/
+.ipynb_checkpoints/

@@ -1,0 +1,14 @@
+[Keyboard]
+RepeatDelay=200
+RepeatRate=90
+
+[Libinput][1149][8264][Kensington Eagle Trackball]
+PointerAcceleration=1.000
+
+[Libinput][5426][153][Razer Razer Basilisk V3]
+PointerAcceleration=1.000
+
+[Mouse]
+X11LibInputXAccelProfileFlat=true
+XLbInptAccelProfileFlat=false
+XLbInptPointerAcceleration=0.6

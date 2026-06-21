@@ -1,0 +1,8 @@
+[FileDialogSize]
+2560x1440 screen: Height=697
+2560x1440 screen: Width=1280
+
+[KFileDialog Settings]
+Recent Files[$e]=clip_0004.wmv,file:///mnt/data-server/comfyui/gens/characters/luna/intro/selected/v2/tongue.mp4,file:///mnt/data-server/comfyui/resources/comparison/light0.6_10steps.mp4,file:///mnt/data-server/comfyui/resources/comparison/fusion+light_loras_wan21_gguf_cfg2_shift11_10steps_audiocfg1.mp4,file:///mnt/data-server/comfyui/resources/comparison/fusion+light_loras_wan21_gguf_cfg2_shift11_8steps.mp4,file:///mnt/data-server/comfyui/resources/comparison/fusion+light_loras_wan21_gguf_cfg2_shift11_10steps.mp4
+Recent URLs[$e]=file:$HOME/Music/,file:///mnt/data-server/comfyui/resources/comparison/,file:///mnt/data-server/comfyui/gens/characters/luna/intro/selected/v2/
+detailViewIconSize=16

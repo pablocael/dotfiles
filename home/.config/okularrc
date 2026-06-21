@@ -1,0 +1,32 @@
+[Desktop Entry]
+FullScreen=false
+
+[FileDialogSize]
+2560x1440 screen: Height=697
+2560x1440 screen: Width=1279
+
+[General]
+LockSidebar=true
+ShowSidebar=false
+
+[Recent Files]
+File1[$e]=$HOME/Documents/exame/exame de sangue.pdf
+File10[$e]=$HOME/data/Personal/development/mymelu.chat/docs/TEST_SCRIPT_COMPACT.pdf
+File2[$e]=$HOME/Downloads/Telegram Desktop/pablo.pdf
+File3[$e]=/mnt/data/Personal/development/mymelu.chat/docs/business/AI_Companion_Competitive_Landscape.pdf
+File4[$e]=/mnt/data/Personal/development/mymelu.chat/docs/business/Aura_Apresentacao_Parceiros_v3.pdf
+File5[$e]=$HOME/Documents/SCHUETZ-2020-MPC-paper.pdf
+File6[$e]=$HOME/Downloads/Telegram Desktop/Receita Rotina HARU.pdf
+File7[$e]=$HOME/data/Personal/development/prev-system/backend/limitacoes_pt-BR.pdf
+File8[$e]=$HOME/data/Personal/development/futevolei-app/docs/2_Detalhamento Protótipo-App Ranking.pdf
+File9[$e]=$HOME/data/Personal/development/futevolei-app/docs/1_Plano de Negócios.pdf
+Name1[$e]=exame de sangue.pdf
+Name10[$e]=TEST_SCRIPT_COMPACT.pdf
+Name2[$e]=pablo.pdf
+Name3[$e]=AI_Companion_Competitive_Landscape.pdf
+Name4[$e]=Aura_Apresentacao_Parceiros_v3.pdf
+Name5[$e]=SCHUETZ-2020-MPC-paper.pdf
+Name6[$e]=Receita Rotina HARU.pdf
+Name7[$e]=limitacoes_pt-BR.pdf
+Name8[$e]=2_Detalhamento Protótipo-App Ranking.pdf
+Name9[$e]=1_Plano de Negócios.pdf
