@@ -23,8 +23,7 @@ FILES=(
   .bashrc .bash_logout .profile .bash_aliases .inputrc .dircolors
   .fzf.bash
   .fonts.conf .gtkrc-2.0
-  # tmux
-  .tmux.conf
+  # tmux  (.tmux.conf is a repo-managed symlink — see SYMLINKS below)
   .local/bin/tmux-switcher
   # gtk / qt
   .config/Trolltech.conf
@@ -43,6 +42,15 @@ DIRS=(
   .local/share/plasma .local/share/kxmlgui5
   # KWin scripts (krohnkite tiling, etc.)
   .local/share/kwin
+)
+
+# --- repo-managed configs: these live IN the repo and $HOME holds a symlink
+#     pointing back at home/<path>. The repo file IS the live config, so they
+#     are NOT snapshotted. backup just preserves them across the rebuild;
+#     restore (re)creates the $HOME symlink. Paths are relative to $HOME. -----
+SYMLINKS=(
+  .tmux.conf
+  .config/alacritty/alacritty.toml
 )
 
 # --- every ~/.config/*rc file is captured automatically, EXCEPT names that
@@ -73,6 +81,14 @@ _put() { # copy one $HOME-relative path into STORE (resolving a top-level symlin
 
 cmd_backup() {
   echo "Rebuilding $STORE from live config…"
+  # Preserve repo-managed (symlinked) files: the live config IS these repo
+  # files, so stash them aside before the rebuild and put them back after,
+  # rather than re-snapshotting the $HOME symlink (which would dead-link them).
+  local tmp; tmp="$(mktemp -d)"; local s
+  for s in "${SYMLINKS[@]}"; do
+    [ -f "$STORE/$s" ] || continue
+    mkdir -p "$tmp/$(dirname "$s")"; cp -a "$STORE/$s" "$tmp/$s"
+  done
   rm -rf "$STORE"; mkdir -p "$STORE"
   local x
   for x in "${FILES[@]}"; do _put "$x"; done
@@ -83,6 +99,13 @@ cmd_backup() {
     if echo "$b" | grep -qiE "$RC_DENY"; then echo "  - skip (privacy): .config/$b"; continue; fi
     _put ".config/$b"
   done
+  # Restore preserved files last so they win over anything a dir copy produced.
+  for s in "${SYMLINKS[@]}"; do
+    [ -e "$tmp/$s" ] || continue
+    mkdir -p "$STORE/$(dirname "$s")"; cp -a "$tmp/$s" "$STORE/$s"
+    echo "  = keep (symlinked): $s"
+  done
+  rm -rf "$tmp"
   echo "Backup complete. Review: git -C '$REPO' status"
 }
 
@@ -90,6 +113,15 @@ cmd_restore() {
   [ -d "$STORE" ] || { echo "Nothing to restore ($STORE missing)"; exit 1; }
   echo "Deploying repo config -> \$HOME …"
   rsync -a "${EXC[@]}" "$STORE/" "$HOME/"
+  # Point repo-managed configs at the repo file (overwrites the plain copy
+  # rsync just laid down) so edits flow straight back into version control.
+  local s
+  for s in "${SYMLINKS[@]}"; do
+    [ -e "$STORE/$s" ] || continue
+    mkdir -p "$(dirname "$HOME/$s")"
+    ln -sfn "$STORE/$s" "$HOME/$s"
+    echo "  -> link: ~/$s -> $STORE/$s"
+  done
   echo "Restore complete. Log out/in (or restart plasmashell & kwin) for KDE changes."
 }
 
