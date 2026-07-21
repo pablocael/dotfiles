@@ -445,3 +445,178 @@ require "surround".setup {
     prefix = "s"
 }
 
+-- AI code completion (Copilot-style ghost text).
+-- Default backend: a local Ollama container (qwen2.5-coder, GPU, free) auto-
+-- started on nvim entry. Cloud fallbacks (DeepInfra, Claude) are selectable
+-- with <leader>cm. Needs the `curl` and `docker` binaries on PATH.
+if isModuleAvailable("minuet") then
+    require('minuet').setup({
+        provider = 'openai_fim_compatible',  -- local Ollama (free, GPU); see block below
+        n_completions = 1,        -- local FIM: 1 suggestion = snappiest (bump to 2 for cycling — it's free now)
+        context_window = 8000,    -- chars of code sent per request (the main input-token cost driver)
+        request_timeout = 8,      -- seconds before a request is abandoned
+        throttle = 1200,          -- min ms between requests (cost guard)
+        debounce = 400,           -- ms of idle typing before firing
+        notify = 'warn',
+        provider_options = {
+            -- Default: local Ollama running qwen2.5-coder (fill-in-the-middle
+            -- code model). Free, private, GPU-accelerated. Ollama needs no
+            -- API key, but minuet requires the field — point it at TERM (an
+            -- env var that always exists) as a harmless placeholder.
+            openai_fim_compatible = {
+                api_key = 'TERM',
+                name = 'Ollama',
+                end_point = 'http://localhost:11434/v1/completions',
+                model = 'qwen2.5-coder:7b',
+                optional = {
+                    max_tokens = 256,
+                    top_p = 0.9,
+                },
+            },
+            -- Cloud fallback: DeepInfra (hosted Qwen3-Coder, chat-based).
+            openai_compatible = {
+                api_key = 'DEEP_INFRA_API_KEY',
+                name = 'DeepInfra',
+                end_point = 'https://api.deepinfra.com/v1/openai/chat/completions',
+                model = 'Qwen/Qwen3-Coder-480B-A35B-Instruct-Turbo',
+                optional = { max_tokens = 256 },
+            },
+            -- Cloud fallback: Claude.
+            claude = {
+                api_key = 'ANTHROPIC_API_KEY',
+                model = 'claude-haiku-4-5',
+                max_tokens = 256,
+            },
+        },
+        virtualtext = {
+            auto_trigger_ft = { '*' },        -- ghost text in every filetype
+            show_on_completion_menu = true,   -- keep ghost text even while the cmp menu is open
+            keymap = {
+                accept        = '<A-y>',      -- accept whole suggestion
+                accept_line   = '<A-l>',      -- accept one line
+                accept_n_lines = '<A-z>',     -- accept N lines (prompts for N)
+                prev          = '<A-[>',      -- cycle to previous suggestion
+                next          = '<A-]>',      -- cycle to next suggestion
+                dismiss       = '<A-e>',      -- dismiss
+            },
+        },
+    })
+
+    -- Runtime model/provider switcher: <leader>cm
+    local minuet_models = {
+        { label = 'Ollama qwen2.5-coder 7b — local, free (default)', provider = 'openai_fim_compatible', model = 'qwen2.5-coder:7b' },
+        { label = 'Ollama qwen2.5-coder 1.5b — local, fastest',      provider = 'openai_fim_compatible', model = 'qwen2.5-coder:1.5b' },
+        { label = 'DeepInfra Qwen3-Coder 480B — cloud, cheap',       provider = 'openai_compatible', model = 'Qwen/Qwen3-Coder-480B-A35B-Instruct-Turbo' },
+        { label = 'Claude Haiku 4.5 — cloud',                        provider = 'claude', model = 'claude-haiku-4-5' },
+    }
+    vim.api.nvim_create_user_command('AIModel', function()
+        vim.ui.select(minuet_models, {
+            prompt = 'Completion model:',
+            format_item = function(item) return item.label end,
+        }, function(choice)
+            if not choice then return end
+            local cfg = require('minuet.config')
+            cfg.provider = choice.provider
+            cfg.provider_options[choice.provider].model = choice.model
+            vim.notify('Minuet → ' .. choice.provider .. ':' .. choice.model)
+        end)
+    end, { desc = 'Select the Claude model used for inline completion' })
+
+    vim.keymap.set('n', '<leader>cm', '<cmd>AIModel<cr>', { desc = 'AI completion: select model' })
+    vim.keymap.set('n', '<leader>ct', '<cmd>Minuet virtualtext toggle<cr>', { desc = 'AI completion: toggle ghost text' })
+
+    -- ── Local Ollama server control (Docker, GPU) ────────────────────────
+    -- The default completion provider talks to a local Ollama container on
+    -- :11434. These commands start/stop it, and it auto-starts on entering
+    -- nvim (only when the local FIM provider is the active one).
+    local OLLAMA = {
+        container = 'ollama-coder',
+        image = 'ollama/ollama',
+        port = 11434,
+        model = 'qwen2.5-coder:7b',
+    }
+
+    -- returns 'running' | 'stopped' | 'absent'
+    local function ollama_status()
+        local anchored = '^/' .. OLLAMA.container .. '$'
+        local running = vim.trim(vim.fn.system({
+            'docker', 'ps', '--filter', 'name=' .. anchored, '--format', '{{.Names}}',
+        }))
+        if running == OLLAMA.container then return 'running' end
+        local exists = vim.trim(vim.fn.system({
+            'docker', 'ps', '-a', '--filter', 'name=' .. anchored, '--format', '{{.Names}}',
+        }))
+        if exists == OLLAMA.container then return 'stopped' end
+        return 'absent'
+    end
+
+    -- Preload the model into VRAM so the first real completion isn't a
+    -- 30s cold start. keep_alive=-1 pins it in memory (no idle unload).
+    local function ollama_warmup()
+        local m = require('minuet.config').provider_options.openai_fim_compatible.model
+        vim.system({
+            'curl', '-s', '-m', '120', 'http://localhost:11434/api/generate',
+            '-d', string.format('{"model":"%s","prompt":"","keep_alive":-1}', m),
+        }, { text = true }, function() end)
+    end
+
+    local function ollama_start(announce)
+        local status = ollama_status()
+        if status == 'running' then
+            if announce then vim.notify('Ollama coding server already running') end
+            ollama_warmup()
+            return
+        end
+        local cmd
+        if status == 'stopped' then
+            cmd = { 'docker', 'start', OLLAMA.container }
+        else
+            cmd = {
+                'docker', 'run', '-d', '--gpus', 'all',
+                '-e', 'OLLAMA_KEEP_ALIVE=-1',   -- keep the model resident in VRAM
+                '-v', 'ollama:/root/.ollama',
+                '-p', OLLAMA.port .. ':' .. OLLAMA.port,
+                '--name', OLLAMA.container, OLLAMA.image,
+            }
+        end
+        vim.system(cmd, { text = true }, function(res)
+            vim.schedule(function()
+                if res.code == 0 then
+                    vim.notify('Ollama coding server started (' .. OLLAMA.model .. ')')
+                    vim.defer_fn(ollama_warmup, 1500)  -- preload once the server is up
+                else
+                    vim.notify('Ollama start failed: ' .. (res.stderr or ''), vim.log.levels.ERROR)
+                end
+            end)
+        end)
+    end
+
+    local function ollama_stop()
+        vim.system({ 'docker', 'stop', OLLAMA.container }, { text = true }, function(res)
+            vim.schedule(function()
+                if res.code == 0 then
+                    vim.notify('Ollama coding server stopped')
+                else
+                    vim.notify('Ollama stop failed: ' .. (res.stderr or ''), vim.log.levels.ERROR)
+                end
+            end)
+        end)
+    end
+
+    vim.api.nvim_create_user_command('OllamaStart', function() ollama_start(true) end,
+        { desc = 'Start the local Ollama coding server (Docker)' })
+    vim.api.nvim_create_user_command('OllamaStop', ollama_stop,
+        { desc = 'Stop the local Ollama coding server (Docker)' })
+    vim.keymap.set('n', '<leader>cs', '<cmd>OllamaStart<cr>', { desc = 'AI completion: start Ollama server' })
+    vim.keymap.set('n', '<leader>cS', '<cmd>OllamaStop<cr>', { desc = 'AI completion: stop Ollama server' })
+
+    -- Auto-start on entering nvim, but only when the local provider is active.
+    vim.api.nvim_create_autocmd('VimEnter', {
+        callback = function()
+            if require('minuet.config').provider == 'openai_fim_compatible' then
+                ollama_start(false)
+            end
+        end,
+    })
+end
+

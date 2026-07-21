@@ -10,10 +10,6 @@ return require("packer").startup(function()
 	use "nvim-lua/plenary.nvim"
 	use 'nvim-lua/popup.nvim'
 	use 'nvim-telescope/telescope-media-files.nvim'
-    use {
-        "jose-elias-alvarez/null-ls.nvim",
-        requires = { "nvim-lua/plenary.nvim" },
-    }
 
 	-- Plugins that provides floating panels and supports different extensions
 	use {
@@ -95,6 +91,12 @@ return require("packer").startup(function()
         'hrsh7th/cmp-path',      -- <-- this exact string
         'hrsh7th/cmp-buffer',
     } }
+
+    -- AI code completion (Copilot-style ghost text) powered by Claude (Opus / Fable / Haiku)
+    use {
+        'milanglacier/minuet-ai.nvim',
+        requires = { 'nvim-lua/plenary.nvim' },
+    }
 
 	-- A style plugin for providing vscode look to nvim
 	use "Mofiqul/vscode.nvim"
