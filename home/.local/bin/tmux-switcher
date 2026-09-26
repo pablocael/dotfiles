@@ -1,29 +1,73 @@
 #!/usr/bin/env bash
+# tmux-switcher — Alt+Tab-style window switcher for tmux, shown in a popup.
+#   • windows listed most-recently-used first (the previous tab is preselected,
+#     so  Alt+w ⏎  toggles back exactly like Alt+Tab)
+#   • Tab / Shift+Tab / Alt+w walk the list, Enter switches
+#   • live preview of the highlighted window's active pane, with its title
+#   • ctrl-n new tab · ctrl-r rename · ctrl-k close · esc cancel
+#
+#   tmux-switcher --list   prints the list (used internally by fzf reload)
+
 export PATH="$HOME/.fzf/bin:$HOME/.local/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
 
+list_windows() {
+  local cur
+  cur=$(tmux display-message -p '#S')
+  # fields: target  stack  index  name  title  path  panes  zoomed
+  tmux list-windows -a \
+    -F $'#{session_name}:#{window_index}\t#{window_stack_index}\t#{window_index}\t#{window_name}\t#{pane_title}\t#{pane_current_path}\t#{window_panes}\t#{window_zoomed_flag}' \
+  | awk -F'\t' -v cur="$cur" -v home="$HOME" '
+    function trunc(s, n) { return (length(s) > n) ? substr(s, 1, n - 1) "…" : s }
+    {
+      target = $1; stack = $2; idx = $3; name = $4; title = $5; path = $6; panes = $7; zoom = $8
+      insess = (index(target, cur ":") == 1)
+      # order: other tabs of this session by recency, then other sessions, current tab last
+      key = insess ? (stack == 0 ? 9 : 0) : 1
+      if (index(path, home) == 1) path = "~" substr(path, length(home) + 1)
+      extra = ""
+      if (panes > 1) extra = extra "  \033[2m" panes " panes\033[0m"
+      if (zoom == 1)  extra = extra "  \033[33m󰁌 zoom\033[0m"
+      if (!insess)    idx = target
+      if (title == name) title = ""
+      printf "%d\t%s\t%s\t\033[1;35m%3s\033[0m  \033[1;97m%-22s\033[0m \033[2m%-34s\033[0m \033[34m%s\033[0m%s\n", \
+             key, stack, target, idx, trunc(name, 22), trunc(title, 34), trunc(path, 40), extra
+    }' \
+  | sort -t $'\t' -k1,1n -k2,2n \
+  | cut -f3-
+}
+
+if [ "${1:-}" = "--list" ]; then list_windows; exit 0; fi
+
 FZF=$(command -v fzf) || { echo "fzf not found"; sleep 2; exit 1; }
+SELF="$0"
+
+preview='
+  t={1}
+  info=$(tmux display-message -p -t "$t" "#{window_index}  #{window_name}   ·   #{pane_title}   ·   #{pane_current_path}   ·   #{pane_width}x#{pane_height}")
+  printf "\033[1;35m %s\033[0m\n" "$info"
+  printf "\033[38;5;240m%s\033[0m\n" "$(printf "%*s" "$FZF_PREVIEW_COLUMNS" "" | tr " " "─")"
+  tmux capture-pane -ep -t "$t"
+'
 
 selected=$(
-  tmux list-windows -a \
-    -F '#{session_name}  #{window_index}  #{window_name}  #{pane_current_path}' \
-  | "$FZF" \
-      --reverse \
-      --prompt='  ' \
-      --header='enter: switch  ctrl-r: rename  ctrl-k: kill  esc: cancel' \
-      --bind 'ctrl-k:execute-silent(
-          win=$(echo {} | awk "{print \$1\":\"\$2}")
-          tmux kill-window -t "$win"
-        )+reload(tmux list-windows -a -F "#{session_name}  #{window_index}  #{window_name}  #{pane_current_path}")' \
-      --bind 'ctrl-r:execute(
-          win=$(echo {} | awk "{print \$1\":\"\$2}")
-          cur=$(echo {} | awk "{print \$3}")
-          tmux command-prompt -I "$cur" -p "rename window:" \
-            "rename-window -t \"$win\" \"%%\""
-        )+reload(tmux list-windows -a -F "#{session_name}  #{window_index}  #{window_name}  #{pane_current_path}")'
+  list_windows | "$FZF" \
+    --ansi --reverse --cycle --no-sort --tiebreak=index \
+    --delimiter=$'\t' --with-nth=2 --nth=2 \
+    --prompt='   ' --pointer='▌' --marker='' \
+    --info=inline-right \
+    --header='  ⏎ switch   tab/⇧tab/alt-w move   ^n new   ^r rename   ^k close   esc' \
+    --border=none --padding=0,1 \
+    --preview="$preview" \
+    --preview-window='right,60%,border-left' \
+    --color='bg:#1e1e2e,bg+:#313244,fg:#cdd6f4,fg+:#cdd6f4,hl:#f38ba8,hl+:#f38ba8' \
+    --color='prompt:#cba6f7,pointer:#cba6f7,header:#6c7086,info:#6c7086,spinner:#f5e0dc' \
+    --color='border:#45475a,preview-border:#45475a,gutter:#1e1e2e,label:#a6adc8' \
+    --bind='tab:down,btab:up,alt-w:down,alt-W:up' \
+    --bind="ctrl-k:execute-silent(tmux kill-window -t {1})+reload($SELF --list)" \
+    --bind="ctrl-r:execute(printf '\n  rename tab to: '; IFS= read -r n </dev/tty; [ -n \"\$n\" ] && tmux rename-window -t {1} \"\$n\")+reload($SELF --list)" \
+    --bind="ctrl-n:execute-silent(tmux new-window -c \"\$(tmux display-message -p -t {1} '#{pane_current_path}')\")+abort"
 )
 
 [ -z "$selected" ] && exit 0
-
-session=$(echo "$selected" | awk '{print $1}')
-window=$(echo "$selected"  | awk '{print $2}')
-tmux switch-client -t "${session}:${window}"
+target=$(printf '%s' "$selected" | cut -f1)
+tmux switch-client -t "$target"
