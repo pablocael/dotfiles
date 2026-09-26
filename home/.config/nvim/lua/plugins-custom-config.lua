@@ -489,7 +489,16 @@ if isModuleAvailable("minuet") then
             },
         },
         virtualtext = {
-            auto_trigger_ft = { '*' },        -- ghost text in every filetype
+            auto_trigger_ft = { '*' },        -- ghost text in every filetype...
+            -- ...except prose and transient buffers. This is a code model, so
+            -- suggestions there are noise, and every keystroke would otherwise
+            -- fire a request at the completion server.
+            auto_trigger_ignore_ft = {
+                'text', 'markdown', 'rst', 'asciidoc', 'org',
+                'gitcommit', 'gitrebase', 'help', 'man',
+                'TelescopePrompt', 'NvimTree', 'neo-tree', 'startify',
+                'qf', 'fugitive', 'oil', 'minifiles', 'dapui_watches',
+            },
             show_on_completion_menu = true,   -- keep ghost text even while the cmp menu is open
             keymap = {
                 accept        = '<A-y>',      -- accept whole suggestion
@@ -610,11 +619,49 @@ if isModuleAvailable("minuet") then
     vim.keymap.set('n', '<leader>cs', '<cmd>OllamaStart<cr>', { desc = 'AI completion: start Ollama server' })
     vim.keymap.set('n', '<leader>cS', '<cmd>OllamaStop<cr>', { desc = 'AI completion: stop Ollama server' })
 
+    -- If the completion server is unreachable, minuet reports every failed
+    -- request -- which means an error notification on each keystroke in insert
+    -- mode. Turn ghost text off instead and say so once; <leader>ct re-enables
+    -- it after the server is back up.
+    local function disable_ghost_text_until_server_is_up()
+        vim.b.minuet_virtual_text_auto_trigger = false
+        vim.api.nvim_create_autocmd('BufEnter', {
+            group = vim.api.nvim_create_augroup('MinuetOfflineGuard', { clear = true }),
+            callback = function() vim.b.minuet_virtual_text_auto_trigger = false end,
+        })
+        vim.notify(
+            'AI completion server unreachable -- ghost text disabled. '
+            .. ':OllamaStart then <leader>ct to re-enable.',
+            vim.log.levels.WARN
+        )
+    end
+
+    -- Probe the server and disable ghost text if it never comes up. The
+    -- container needs a few seconds after `docker start`, so retry a while.
+    local function gate_on_server_health(attempts_left)
+        vim.system(
+            { 'curl', '-sf', '-m', '2', 'http://localhost:11434/api/version' },
+            { text = true },
+            function(res)
+                vim.schedule(function()
+                    if res.code == 0 then
+                        pcall(vim.api.nvim_del_augroup_by_name, 'MinuetOfflineGuard')
+                    elseif attempts_left > 0 then
+                        vim.defer_fn(function() gate_on_server_health(attempts_left - 1) end, 3000)
+                    else
+                        disable_ghost_text_until_server_is_up()
+                    end
+                end)
+            end
+        )
+    end
+
     -- Auto-start on entering nvim, but only when the local provider is active.
     vim.api.nvim_create_autocmd('VimEnter', {
         callback = function()
             if require('minuet.config').provider == 'openai_fim_compatible' then
                 ollama_start(false)
+                gate_on_server_health(5)
             end
         end,
     })

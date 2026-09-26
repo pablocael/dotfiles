@@ -1,6 +1,7 @@
 require("options-config")
 require("key-mappings-config")
 require("plugins-custom-config")
+require("image-paste-config")
 
 return require("packer").startup(function()
 	-- Packer plugin for packer :-}
@@ -150,6 +151,9 @@ return require("packer").startup(function()
 		"iamcco/markdown-preview.nvim",
 		run = function() vim.fn["mkdp#util#install"]() end,
 	})
+	-- paste images from the clipboard: saves them to disk and inserts a link
+	use "HakonHarnes/img-clip.nvim"
+
 	use "peterhoeg/vim-qml"
 
 	use "thinca/vim-qfreplace"
