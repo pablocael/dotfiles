@@ -34,7 +34,7 @@ FILES=(
 # --- directory configs (paths relative to $HOME) ---------------------------
 DIRS=(
   # terminals / editor
-  .config/alacritty .config/kitty .config/nvim
+  .config/alacritty .config/kitty   # .config/nvim is repo-managed — see SYMLINKS
   # gtk + kde defaults
   .config/gtk-3.0 .config/gtk-4.0 .config/kdedefaults .config/kde.org
   # KDE look & feel data
@@ -51,6 +51,7 @@ DIRS=(
 SYMLINKS=(
   .tmux.conf
   .config/alacritty/alacritty.toml
+  .config/nvim
 )
 
 # --- every ~/.config/*rc file is captured automatically, EXCEPT names that
@@ -86,7 +87,7 @@ cmd_backup() {
   # rather than re-snapshotting the $HOME symlink (which would dead-link them).
   local tmp; tmp="$(mktemp -d)"; local s
   for s in "${SYMLINKS[@]}"; do
-    [ -f "$STORE/$s" ] || continue
+    [ -e "$STORE/$s" ] || continue
     mkdir -p "$tmp/$(dirname "$s")"; cp -a "$STORE/$s" "$tmp/$s"
   done
   rm -rf "$STORE"; mkdir -p "$STORE"
@@ -102,6 +103,8 @@ cmd_backup() {
   # Restore preserved files last so they win over anything a dir copy produced.
   for s in "${SYMLINKS[@]}"; do
     [ -e "$tmp/$s" ] || continue
+    # a dir copy may have left the $HOME symlink here (pointing at itself)
+    rm -rf "${STORE:?}/$s"
     mkdir -p "$STORE/$(dirname "$s")"; cp -a "$tmp/$s" "$STORE/$s"
     echo "  = keep (symlinked): $s"
   done
@@ -112,12 +115,17 @@ cmd_backup() {
 cmd_restore() {
   [ -d "$STORE" ] || { echo "Nothing to restore ($STORE missing)"; exit 1; }
   echo "Deploying repo config -> \$HOME …"
-  rsync -a "${EXC[@]}" "$STORE/" "$HOME/"
+  local s skip=()
+  for s in "${SYMLINKS[@]}"; do skip+=(--exclude="/$s"); done
+  rsync -a "${EXC[@]}" "${skip[@]}" "$STORE/" "$HOME/"
   # Point repo-managed configs at the repo file (overwrites the plain copy
   # rsync just laid down) so edits flow straight back into version control.
-  local s
   for s in "${SYMLINKS[@]}"; do
     [ -e "$STORE/$s" ] || continue
+    # move a real file/dir aside so ln doesn't nest the link inside it
+    if [ -e "$HOME/$s" ] && [ ! -L "$HOME/$s" ]; then
+      mv "$HOME/$s" "$HOME/$s.pre-dotfiles.$(date +%s)"
+    fi
     mkdir -p "$(dirname "$HOME/$s")"
     ln -sfn "$STORE/$s" "$HOME/$s"
     echo "  -> link: ~/$s -> $STORE/$s"

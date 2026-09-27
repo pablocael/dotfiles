@@ -52,7 +52,7 @@ preview='
 selected=$(
   list_windows | "$FZF" \
     --ansi --reverse --cycle --no-sort --tiebreak=index \
-    --delimiter=$'\t' --with-nth=2 --nth=2 \
+    --delimiter=$'\t' --with-nth=2 \
     --prompt='   ' --pointer='▌' --marker='' \
     --info=inline-right \
     --header='  ⏎ switch   tab/⇧tab/alt-w move   ^n new   ^r rename   ^k close   esc' \
