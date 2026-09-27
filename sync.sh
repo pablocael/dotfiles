@@ -34,7 +34,7 @@ FILES=(
 # --- directory configs (paths relative to $HOME) ---------------------------
 DIRS=(
   # terminals / editor
-  .config/alacritty .config/kitty   # .config/nvim is repo-managed — see SYMLINKS
+  .config/alacritty .config/kitty .config/fastfetch   # .config/nvim is repo-managed — see SYMLINKS
   # gtk + kde defaults
   .config/gtk-3.0 .config/gtk-4.0 .config/kdedefaults .config/kde.org
   # KDE look & feel data
@@ -61,7 +61,7 @@ RC_DENY='mail|akonadi|kontact|korg|kaddress|kalendar|kdeconnect|signon|wallet'
 # --- excludes applied to every copy (junk + defense-in-depth secret guard) -
 EXC=(
   --exclude='.git' --exclude='.gitmodules'
-  --exclude='*.swp' --exclude='*.swo' --exclude='*~'
+  --exclude='*.swp' --exclude='*.swo' --exclude='*~' --exclude='*.bak-*'
   --exclude='.swp' --exclude='.undo' --exclude='.backup'
   --exclude='/nvim'            # self-referential symlink inside .config/nvim
   --exclude='*/Cache/' --exclude='*/cache/' --exclude='*.log'

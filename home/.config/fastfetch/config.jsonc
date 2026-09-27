@@ -1,0 +1,38 @@
+// Shown once per tmux session (see ~/.bashrc). Catppuccin Mocha, to match tmux.
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "type": "file",
+    "source": "~/.config/fastfetch/logo.txt",
+    "color": { "1": "#cba6f7", "2": "#b4befe", "3": "#89b4fa", "4": "#94e2d5", "5": "#a6e3a1" },
+    "padding": { "top": 3, "left": 2, "right": 4 }
+  },
+  "display": {
+    "separator": " ",
+    "color": { "keys": "#cba6f7", "title": "#89b4fa", "output": "#cdd6f4" },
+    "percent": { "type": 3, "color": { "green": "#a6e3a1", "yellow": "#f9e2af", "red": "#f38ba8" } },
+    "bar": { "char": { "elapsed": "━", "total": "━" }, "border": { "left": "", "right": "" }, "width": 12 },
+    "size": { "binaryPrefix": "iec", "ndigits": 1 }
+  },
+  "modules": [
+    { "type": "title", "format": "{user-name-colored}{at-symbol-colored}{host-name-colored}" },
+    { "type": "datetime", "key": " ", "format": "{weekday} {day-in-month} {month-name-short} · {hour-pretty}:{minute-pretty}", "keyColor": "#6c7086", "outputColor": "#6c7086" },
+    "break",
+    { "type": "custom", "format": "\u001b[38;2;108;112;134m╭─ system" },
+    { "type": "os",      "key": "│ 󰣇 os     ", "format": "{name} {version-id} · {codename}" },
+    { "type": "kernel",  "key": "│  kernel ", "format": "{release}" },
+    { "type": "uptime",  "key": "│ 󰅐 uptime " },
+    { "type": "shell",   "key": "│  shell  " },
+    { "type": "custom", "format": "\u001b[38;2;108;112;134m├─ hardware" },
+    { "type": "cpu",     "key": "│  cpu    ", "format": "{name} · {cores-logical} threads" },
+    { "type": "gpu",     "key": "│ 󰢮 gpu    ", "hideType": "integrated", "format": "{name}" },
+    { "type": "memory",  "key": "│  memory ", "format": "{percentage-bar} {used} / {total} ({percentage})" },
+    { "type": "custom", "format": "\u001b[38;2;108;112;134m├─ storage" },
+    { "type": "disk",    "key": "│ 󰋊 root   ", "folders": "/",         "format": "{size-percentage-bar} {size-used} / {size-total} ({size-percentage})" },
+    { "type": "disk",    "key": "│ 󰋊 data   ", "folders": "/mnt/data", "format": "{size-percentage-bar} {size-used} / {size-total} ({size-percentage})" },
+    { "type": "custom", "format": "\u001b[38;2;108;112;134m╰─ network" },
+    { "type": "localip", "key": "  󰩟 lan    ", "format": "{ipv4} · {ifname}" },
+    "break",
+    { "type": "colors", "symbol": "circle", "paddingLeft": 2 }
+  ]
+}
