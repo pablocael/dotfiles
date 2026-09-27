@@ -19,14 +19,14 @@ plugin=org.kde.plasma.folder
 wallpaperplugin=org.kde.image
 
 [Containments][1][ConfigDialog]
-DialogHeight=540
-DialogWidth=720
+DialogHeight=1717
+DialogWidth=2170
 
 [Containments][1][General]
 positions={"2400x1350":[],"2560x1440":[],"3072x1728":[],"3840x2160":[]}
 
 [Containments][1][Wallpaper][org.kde.image][General]
-Image=/usr/share/wallpapers/Gregorio_001.png
+Image=file:///home/pelias/data/Personal/wallpapers/a_man_and_a_robot_standing_in_a_parking_lot.jpg
 SlidePaths=/usr/share/wallpapers/
 
 [Containments][2]
@@ -43,7 +43,6 @@ immutability=1
 plugin=org.kde.plasma.digitalclock
 
 [Containments][2][Applets][21][Configuration]
-PreloadWeight=100
 popupHeight=470
 popupWidth=580
 
@@ -59,7 +58,6 @@ immutability=1
 plugin=org.kde.plasma.kickoff
 
 [Containments][2][Applets][3][Configuration]
-PreloadWeight=100
 popupHeight=520
 popupWidth=665
 
@@ -74,7 +72,6 @@ showAppsByName=true
 [Containments][2][Applets][3][Configuration][General]
 applicationsDisplay=0
 favoritesPortedToKAstats=true
-icon=ring-kde
 primaryActions=3
 systemFavorites=lock-screen\\,logout\\,save-session\\,switch-user\\,suspend\\,hibernate\\,reboot\\,shutdown
 
@@ -86,7 +83,6 @@ immutability=1
 plugin=org.kde.plasma.vault
 
 [Containments][2][Applets][34][Configuration]
-PreloadWeight=100
 popupHeight=220
 popupWidth=328
 
@@ -100,7 +96,6 @@ plugin=org.kde.plasma.systemmonitor.cpu
 
 [Containments][2][Applets][35][Configuration]
 CurrentPreset=org.kde.plasma.systemmonitor
-PreloadWeight=95
 popupHeight=193
 popupWidth=156
 
@@ -133,7 +128,7 @@ DialogHeight=540
 DialogWidth=720
 
 [Containments][2][Applets][5][Configuration][General]
-launchers=applications:systemsettings.desktop,applications:google-chrome.desktop,preferred://filemanager,applications:Alacritty.desktop,applications:obsidian_obsidian.desktop,applications:simple-sys-mon.desktop,applications:nvim-qt.desktop,applications:filezilla.desktop
+launchers=applications:google-chrome.desktop,preferred://filemanager,applications:Alacritty.desktop,applications:simple-sys-mon.desktop,applications:filezilla.desktop,applications:org.kde.spectacle.desktop
 
 [Containments][2][Applets][6]
 immutability=1
@@ -158,9 +153,6 @@ plugin=org.kde.kscreen
 immutability=1
 plugin=org.kde.plasma.notifications
 
-[Containments][2][Applets][7][Applets][11][Configuration]
-PreloadWeight=100
-
 [Containments][2][Applets][7][Applets][12]
 immutability=1
 plugin=org.kde.plasma.keyboardindicator
@@ -169,9 +161,6 @@ plugin=org.kde.plasma.keyboardindicator
 immutability=1
 plugin=org.kde.plasma.volume
 
-[Containments][2][Applets][7][Applets][13][Configuration]
-PreloadWeight=100
-
 [Containments][2][Applets][7][Applets][13][Configuration][General]
 migrated=true
 
@@ -179,15 +168,9 @@ migrated=true
 immutability=1
 plugin=org.kde.plasma.clipboard
 
-[Containments][2][Applets][7][Applets][14][Configuration]
-PreloadWeight=85
-
 [Containments][2][Applets][7][Applets][15]
 immutability=1
 plugin=org.kde.plasma.vault
-
-[Containments][2][Applets][7][Applets][15][Configuration]
-PreloadWeight=100
 
 [Containments][2][Applets][7][Applets][16]
 immutability=1
@@ -205,50 +188,29 @@ plugin=org.kde.plasma.cameraindicator
 immutability=1
 plugin=org.kde.plasma.printmanager
 
-[Containments][2][Applets][7][Applets][19][Configuration]
-PreloadWeight=60
-
 [Containments][2][Applets][7][Applets][20]
 immutability=1
 plugin=org.kde.plasma.devicenotifier
-
-[Containments][2][Applets][7][Applets][20][Configuration]
-PreloadWeight=100
 
 [Containments][2][Applets][7][Applets][23]
 immutability=1
 plugin=org.kde.plasma.brightness
 
-[Containments][2][Applets][7][Applets][23][Configuration]
-PreloadWeight=5
-
 [Containments][2][Applets][7][Applets][24]
 immutability=1
 plugin=org.kde.plasma.battery
-
-[Containments][2][Applets][7][Applets][24][Configuration]
-PreloadWeight=0
 
 [Containments][2][Applets][7][Applets][25]
 immutability=1
 plugin=org.kde.plasma.networkmanagement
 
-[Containments][2][Applets][7][Applets][25][Configuration]
-PreloadWeight=100
-
 [Containments][2][Applets][7][Applets][26]
 immutability=1
 plugin=org.kde.plasma.bluetooth
 
-[Containments][2][Applets][7][Applets][26][Configuration]
-PreloadWeight=100
-
 [Containments][2][Applets][7][Applets][30]
 immutability=1
 plugin=org.kde.plasma.mediacontroller
-
-[Containments][2][Applets][7][Applets][30][Configuration]
-PreloadWeight=0
 
 [Containments][2][Applets][7][Applets][36]
 immutability=1
@@ -257,9 +219,6 @@ plugin=org.kde.plasma.weather
 [Containments][2][Applets][7][Applets][9]
 immutability=1
 plugin=org.kde.plasma.keyboardlayout
-
-[Containments][2][Applets][7][Configuration]
-PreloadWeight=100
 
 [Containments][2][Applets][7][General]
 extraItems=org.kde.plasma.mediacontroller,org.kde.plasma.keyboardlayout,org.kde.kscreen,org.kde.plasma.notifications,org.kde.plasma.keyboardindicator,org.kde.plasma.volume,org.kde.kupapplet,org.kde.plasma.clipboard,org.kde.plasma.bluetooth,org.kde.plasma.networkmanagement,org.kde.plasma.vault,org.kde.kdeconnect,org.kde.plasma.brightness,org.kde.plasma.manage-inputmethod,org.kde.plasma.battery,org.kde.plasma.cameraindicator,org.kde.plasma.printmanager,org.kde.plasma.devicenotifier,org.kde.plasma.weather

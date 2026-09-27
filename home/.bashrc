@@ -148,3 +148,11 @@ export PATH="$PATH:/home/pelias/.lmstudio/bin"
 
 # opencode
 export PATH=/home/pelias/.opencode/bin:$PATH
+
+# >>> Claude Code Router CLI >>>
+# Added by Claude Code Router. Enables the ccr-app command in new shells.
+case ":$PATH:" in
+  *":$HOME/.claude-code-router/bin:"*) ;;
+  *) export PATH="$HOME/.claude-code-router/bin:$PATH" ;;
+esac
+# <<< Claude Code Router CLI <<<

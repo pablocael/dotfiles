@@ -1,13 +1,16 @@
 [DetailsMode]
-IconSize=112
-PreviewSize=16
+IconSize=64
+PreviewSize=144
+RightPadding=426
 
 [General]
+GlobalViewProps=true
 Version=202
 ViewPropsTimestamp=2025,8,10,9,4,38.99
 
 [IconsMode]
-PreviewSize=80
+IconSize=112
+PreviewSize=192
 
 [KFileDialog Settings]
 Places Icons Auto-resize=false

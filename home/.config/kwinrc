@@ -1,6 +1,3 @@
-[Activities][LastVirtualDesktop]
-ea5db570-3daf-4e29-a859-1b5bfb82a509=cc52cfc8-d968-44b1-bd9b-c0f64cd2eec2
-
 [Desktops]
 Id_1=cc52cfc8-d968-44b1-bd9b-c0f64cd2eec2
 Id_2=633114f5-d972-44c8-9064-bd55546e244b
@@ -12,8 +9,8 @@ Number=3
 Rows=1
 
 [Plugins]
-desktopchangeosdEnabled=true
-krohnkiteEnabled=true
+desktopchangeosdEnabled=false
+krohnkiteEnabled=false
 sheetEnabled=true
 slidebackEnabled=true
 translucencyEnabled=true
@@ -26,9 +23,6 @@ PopupHideDelay=300
 LayoutName=sidebar
 ShowDesktopMode=1
 ShowTabBox=false
-
-[Tiling]
-padding=4
 
 [Tiling][00716d20-5cc2-5f99-a271-3fbb07e0e222]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
@@ -46,7 +40,8 @@ tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"wi
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
 [Tiling][633114f5-d972-44c8-9064-bd55546e244b][402161e6-9d76-467f-a466-238453e3688f]
-tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+padding=4
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.5},{"width":0.5}]}
 
 [Tiling][7a5f98f9-152f-5dbe-bd3a-0b35b687adad]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
@@ -55,6 +50,7 @@ tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"wi
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
 [Tiling][7b61ba98-6c0e-4e32-9bdd-e9369a213acc][402161e6-9d76-467f-a466-238453e3688f]
+padding=4
 tiles={"layoutDirection":"horizontal","tiles":[{"layoutDirection":"vertical","tiles":[{"height":0.5},{"height":0.5}],"width":0.5},{"layoutDirection":"vertical","tiles":[{"height":0.5},{"height":0.5}],"width":0.5}]}
 
 [Tiling][92e842d7-5928-5c43-884a-4912e7cc82ed]
@@ -64,7 +60,8 @@ tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"wi
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
 [Tiling][cc52cfc8-d968-44b1-bd9b-c0f64cd2eec2][402161e6-9d76-467f-a466-238453e3688f]
-tiles={"layoutDirection":"horizontal","tiles":[{"width":0.4011718749999999},{"width":0.4011718749999999},{"layoutDirection":"vertical","tiles":[{"height":0.24513888888888896},{"height":0.3774305555555549},{"height":0.37743055555555494}],"width":0.1976562500000002}]}
+padding=4
+tiles={"layoutDirection":"horizontal","tiles":[{"layoutDirection":"vertical","tiles":[{"height":1,"layoutDirection":"horizontal","tiles":[{"layoutDirection":"vertical","tiles":[{"height":0.5},{"height":0.5}],"width":0.1921223958333337},{"width":0.6094401041666783},{"layoutDirection":"vertical","tiles":[{"height":0.5},{"height":0.5}],"width":0.19843749999998805}]}],"width":1}]}
 
 [Tiling][d02c035d-eef0-5c68-aa2f-2e83d0ba08b1]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
@@ -76,7 +73,7 @@ tiles={"layoutDirection":"vertical","tiles":[{"height":1,"layoutDirection":"hori
 RollOverDesktops=true
 
 [Xwayland]
-Scale=1.5
+Scale=1
 
 [org.kde.kdecoration2]
 library=org.kde.breeze

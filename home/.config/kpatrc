@@ -2,10 +2,17 @@
 Theme=themes/greenblaze.desktop
 
 [Scores]
+loosestreak10=1
 loosestreak2=2
+maxloosestreak10=1
 maxloosestreak2=2
+maxwinstreak10=0
 maxwinstreak2=0
+minmoves10=-1
 minmoves2=-1
+total10=1
 total2=2
+winstreak10=0
 winstreak2=0
+won10=0
 won2=0
