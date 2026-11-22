@@ -1,32 +1,28 @@
 [Desktop Entry]
 FullScreen=false
 
-[FileDialogSize]
-2560x1440 screen: Height=697
-2560x1440 screen: Width=1279
-
 [General]
 LockSidebar=true
 ShowSidebar=false
 
 [Recent Files]
-File1[$e]=/mnt/data-server/public/Documents/Personal/Pablo/UBO_passport-pablo.pdf
-File10[$e]=/mnt/data-server/public/Documents/sodolabs.ai/daika/daika_models_and_moderation.pdf
-File2[$e]=$HOME/Downloads/CNH-e.pdf.pdf
-File3[$e]=$HOME/Downloads/energy_bill_pablo.pdf
-File4[$e]=/mnt/data-server/public/Documents/sodolabs.ai/BankStatement_Slash_PabloCarneiroElias.pdf
-File5[$e]=/mnt/data-server/public/Documents/sodolabs.ai/Slash_bank_letter.pdf
-File6[$e]=/mnt/data-server/public/Documents/sodolabs.ai/doola/SignedForm8821-2026-06-19.pdf
-File7[$e]=/mnt/data-server/public/Documents/sodolabs.ai/doola/Formation_Document_-_SodoLabs.ai_LLC.pdf
-File8[$e]=/mnt/data-server/public/Documents/sodolabs.ai/doola/EIN_Fax_-_SODOLABS_DOT_AI_LLC.pdf
-File9[$e]=/mnt/data-server/public/Documents/sodolabs.ai/doola/EIN_Letter_-_SODOLABS_DOT_AI_LLC.pdf
-Name1[$e]=UBO_passport-pablo.pdf
-Name10[$e]=daika_models_and_moderation.pdf
-Name2[$e]=CNH-e.pdf.pdf
-Name3[$e]=energy_bill_pablo.pdf
-Name4[$e]=BankStatement_Slash_PabloCarneiroElias.pdf
-Name5[$e]=Slash_bank_letter.pdf
-Name6[$e]=SignedForm8821-2026-06-19.pdf
-Name7[$e]=Formation_Document_-_SodoLabs.ai_LLC.pdf
-Name8[$e]=EIN_Fax_-_SODOLABS_DOT_AI_LLC.pdf
-Name9[$e]=EIN_Letter_-_SODOLABS_DOT_AI_LLC.pdf
+File1[$e]=/mnt/data-server/public/Documents/sodolabs.ai/BankStatement_Slash_PabloCarneiroElias.pdf
+File10[$e]=/mnt/data-server/public/Documents/Legal/AMAAMA/CONTRATO SOCIAL (2).pdf
+File2[$e]=/mnt/data-server/public/Documents/sodolabs.ai/Slash_bank_letter.pdf
+File3[$e]=/mnt/data-server/public/Documents/sodolabs.ai/doola/SignedForm8821-2026-06-19.pdf
+File4[$e]=/mnt/data-server/public/Documents/sodolabs.ai/doola/Formation_Document_-_SodoLabs.ai_LLC.pdf
+File5[$e]=/mnt/data-server/public/Documents/sodolabs.ai/doola/EIN_Fax_-_SODOLABS_DOT_AI_LLC.pdf
+File6[$e]=/mnt/data-server/public/Documents/sodolabs.ai/doola/EIN_Letter_-_SODOLABS_DOT_AI_LLC.pdf
+File7[$e]=/mnt/data-server/public/Documents/sodolabs.ai/daika/daika_models_and_moderation.pdf
+File8[$e]=$HOME/.cache/zapfast/media/3EB06ED6A2AD24A3C7B7ED-AMAMOS_AMAZON.pdf
+File9[$e]=$HOME/Downloads/Telegram Desktop/CONTRATO SOCIAL (2).pdf
+Name1[$e]=BankStatement_Slash_PabloCarneiroElias.pdf
+Name10[$e]=CONTRATO SOCIAL (2).pdf
+Name2[$e]=Slash_bank_letter.pdf
+Name3[$e]=SignedForm8821-2026-06-19.pdf
+Name4[$e]=Formation_Document_-_SodoLabs.ai_LLC.pdf
+Name5[$e]=EIN_Fax_-_SODOLABS_DOT_AI_LLC.pdf
+Name6[$e]=EIN_Letter_-_SODOLABS_DOT_AI_LLC.pdf
+Name7[$e]=daika_models_and_moderation.pdf
+Name8[$e]=3EB06ED6A2AD24A3C7B7ED-AMAMOS_AMAZON.pdf
+Name9[$e]=CONTRATO SOCIAL (2).pdf

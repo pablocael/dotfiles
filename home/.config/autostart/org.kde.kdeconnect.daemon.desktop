@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Exec=/usr/bin/kdeconnectd
+Name=KDE Connect
+Hidden=true
+X-GNOME-Autostart-enabled=false

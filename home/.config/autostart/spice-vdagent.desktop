@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Spice vdagent
+Exec=/usr/bin/spice-vdagent
+Type=Application
+Hidden=true
+X-GNOME-Autostart-enabled=false

@@ -4,7 +4,13 @@ Seen=true
 [Applications][google-chrome]
 Seen=true
 
+[Applications][io.snapcraft.SessionAgent]
+Seen=true
+
 [Applications][org.qbittorrent.qBittorrent]
+Seen=true
+
+[Applications][slack]
 Seen=true
 
 [Applications][slack_slack]
@@ -15,3 +21,6 @@ Seen=true
 
 [Applications][thunderbird_thunderbird]
 Seen=true
+
+[Notifications]
+PopupPosition=TopCenter

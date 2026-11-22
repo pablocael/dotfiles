@@ -19,14 +19,14 @@ plugin=org.kde.plasma.folder
 wallpaperplugin=org.kde.image
 
 [Containments][1][ConfigDialog]
-DialogHeight=1717
+DialogHeight=1656
 DialogWidth=2170
 
 [Containments][1][General]
 positions={"2400x1350":[],"2560x1440":[],"3072x1728":[],"3840x2160":[]}
 
 [Containments][1][Wallpaper][org.kde.image][General]
-Image=file:///home/pelias/data/Personal/wallpapers/a_man_and_a_robot_standing_in_a_parking_lot.jpg
+Image=file:///home/pelias/data/Personal/wallpapers/a_group_of_tall_buildings_with_cartoon_characters_on_them.jpg
 SlidePaths=/usr/share/wallpapers/
 
 [Containments][2]
@@ -128,7 +128,7 @@ DialogHeight=540
 DialogWidth=720
 
 [Containments][2][Applets][5][Configuration][General]
-launchers=applications:google-chrome.desktop,preferred://filemanager,applications:Alacritty.desktop,applications:simple-sys-mon.desktop,applications:filezilla.desktop,applications:org.kde.spectacle.desktop
+launchers=applications:google-chrome.desktop,applications:Alacritty.desktop,applications:simple-sys-mon.desktop,applications:filezilla.desktop,applications:org.kde.spectacle.desktop,applications:slack.desktop
 
 [Containments][2][Applets][6]
 immutability=1

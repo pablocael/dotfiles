@@ -1,6 +1,7 @@
 [Annotations]
-annotationToolType=2
-rectangleStrokeColor=255,0,0
+annotationToolType=7
+rectangleFillColor=255,0,0,0
+rectangleStrokeColor=170,255,0
 
 [General]
 clipboardGroup=PostScreenshotCopyImage

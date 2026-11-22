@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=UnifiedPush Distributor
+Exec=kunifiedpush-distributor
+Type=Application
+Hidden=true
+X-GNOME-Autostart-enabled=false

@@ -1,0 +1,4 @@
+com.github.juzzlin.DustRacing2D	flathub
+io.missioncenter.MissionCenter	flathub
+me.timschneeberger.GalaxyBudsClient	flathub
+org.strawberrymusicplayer.strawberry	flathub

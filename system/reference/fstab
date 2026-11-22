@@ -1,0 +1,15 @@
+# /etc/fstab: static file system information.
+#
+# Use 'blkid' to print the universally unique identifier for a device; this may
+# be used with UUID= as a more robust way to name devices that works even if
+# disks are added and removed. See fstab(5).
+#
+# <file system>             <mount point>  <type>  <options>  <dump>  <pass>
+UUID=406E-A3A0                              /boot/efi   vfat    defaults            0 2 
+UUID=7868a423-353c-4ed0-b397-adab0a980c07   /           ext4    defaults            0 1 
+/swapfile                                   swap        swap    defaults            0 0 
+tmpfs                                       /tmp        tmpfs   noatime,mode=1777   0 0 
+UUID=3d9e9110-fa6c-4fce-a2d2-805fcae93ee8  /mnt/data  ext4  defaults,nofail  0  2
+//192.168.15.50/Media     /mnt/media        cifs  credentials=/etc/samba/pelias-nas.cred,uid=1000,gid=1000,rw,vers=3.1.1,sec=ntlmssp,file_mode=0664,dir_mode=0775,iocharset=utf8,_netdev,nofail,x-systemd.automount  0  0
+//192.168.15.50/DataPablo /mnt/data-server  cifs  credentials=/etc/samba/pelias-nas.cred,uid=1000,gid=1000,rw,vers=3.1.1,sec=ntlmssp,file_mode=0664,dir_mode=0775,iocharset=utf8,_netdev,nofail,x-systemd.automount  0  0
+//192.168.15.50/MailPablo /mnt/gmail        cifs  credentials=/etc/samba/pelias-nas.cred,uid=1000,gid=1000,rw,vers=3.1.1,sec=ntlmssp,file_mode=0664,dir_mode=0775,iocharset=utf8,_netdev,nofail,x-systemd.automount  0  0

@@ -1,0 +1,39 @@
+[20e53097-8bce-4620-96af-0a8a37f4b721]
+Description=Messaging → 3 Communication
+desktops=7b61ba98-6c0e-4e32-9bdd-e9369a213acc
+desktopsrule=3
+types=1
+wmclass=^(Slack|slack|zoom|Zoom|org\\.telegram\\.desktop|TelegramDesktop|telegram-desktop|org\\.gnome\\.Evolution|evolution)$
+wmclasscomplete=false
+wmclassmatch=3
+
+[427d93d0-47c8-4417-a305-52206feb58e4]
+Description=Monitoring → 4 Metrics
+desktops=45e9579a-fabc-44b5-9598-a6d091bdc2d6
+desktopsrule=3
+types=1
+wmclass=^(io\\.missioncenter\\.MissionCenter|org\\.kde\\.plasma-systemmonitor|plasma-systemmonitor)$
+wmclasscomplete=false
+wmclassmatch=3
+
+[48040697-c2cc-41af-8753-722120085d64]
+Description=Terminals & editors → 1 Code
+desktops=cc52cfc8-d968-44b1-bd9b-c0f64cd2eec2
+desktopsrule=3
+types=1
+wmclass=^(Alacritty|alacritty|org\\.kde\\.konsole|konsole|Code|code|code-url-handler|Cursor|cursor|cursor-url-handler)$
+wmclasscomplete=false
+wmclassmatch=3
+
+[General]
+count=4
+rules=48040697-c2cc-41af-8753-722120085d64,b22554b8-0630-4005-88eb-f3e2ef114e22,20e53097-8bce-4620-96af-0a8a37f4b721,427d93d0-47c8-4417-a305-52206feb58e4
+
+[b22554b8-0630-4005-88eb-f3e2ef114e22]
+Description=Browser → 2 Browse
+desktops=633114f5-d972-44c8-9064-bd55546e244b
+desktopsrule=3
+types=1
+wmclass=^(google-chrome|Google-chrome)$
+wmclasscomplete=false
+wmclassmatch=3

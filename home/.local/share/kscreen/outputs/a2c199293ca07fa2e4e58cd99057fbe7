@@ -1,0 +1,19 @@
+{
+    "id": "a2c199293ca07fa2e4e58cd99057fbe7",
+    "metadata": {
+        "fullname": "xrandr-Samsung Electric Company-LU28R55-HX5X901224",
+        "name": "HDMI-0"
+    },
+    "mode": {
+        "refresh": 60,
+        "size": {
+            "height": 2160,
+            "width": 3840
+        }
+    },
+    "overscan": 0,
+    "rgbrange": 0,
+    "rotation": 1,
+    "scale": 1,
+    "vrrpolicy": 2
+}

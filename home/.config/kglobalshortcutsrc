@@ -101,6 +101,8 @@ MoveZoomLeft=none,none,Move Zoomed Area to Left
 MoveZoomRight=none,none,Move Zoomed Area to Right
 MoveZoomUp=none,none,Move Zoomed Area Upwards
 Overview=Meta+W,Meta+W,Toggle Overview
+Remember Window Positions: Block Restore=Meta+X,none,Remember Window Positions: Block Restoration Toggle
+Remember Window Positions: Show Config=Meta+Ctrl+W,none,Remember Window Positions: Show Config
 Setup Window Shortcut=none,,Setup Window Shortcut
 Show Desktop=Meta+D,Meta+D,Peek at Desktop
 Suspend Compositing=Alt+Shift+F12,Alt+Shift+F12,Suspend Compositing
@@ -327,6 +329,10 @@ RectangularRegionScreenShot=Meta+#
 
 [services][systemsettings.desktop]
 _launch=Tools\t
+
+[slack]
+AFFC7CE508CCAEF6E81B6AD2F8091899-Ctrl+Shift+Space=,Ctrl+Shift+Space,Slack shortcut: Ctrl+Shift+Space
+_k_friendly_name=Slack
 
 [wacomtablet]
 Map to fullscreen=Meta+Ctrl+F,Meta+Ctrl+F,Map to fullscreen

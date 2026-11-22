@@ -1,0 +1,20 @@
+[Added Associations]
+
+[Default Applications]
+inode/directory=dolphin.desktop
+text/html=google-chrome.desktop
+video/mp4=org.kde.haruna.desktop
+x-scheme-handler/claude=com.anthropic.Claude.desktop
+x-scheme-handler/claude-cli=claude-code-url-handler.desktop
+x-scheme-handler/codex=chatgpt.desktop
+x-scheme-handler/http=google-chrome.desktop
+x-scheme-handler/https=google-chrome.desktop
+x-scheme-handler/lmstudio=lm-studio.desktop
+x-scheme-handler/slack=slack.desktop
+video/mp2t=org.kde.haruna.desktop
+video/mpeg=org.kde.haruna.desktop
+video/ogg=org.kde.haruna.desktop
+video/quicktime=org.kde.haruna.desktop
+video/webm=org.kde.haruna.desktop
+video/x-matroska=org.kde.haruna.desktop
+video/x-ms-wmv=org.kde.haruna.desktop

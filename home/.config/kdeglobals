@@ -132,18 +132,14 @@ ForegroundNormal=252,252,252
 ForegroundPositive=39,174,96
 ForegroundVisited=155,89,182
 
-[DirSelect Dialog]
-DirSelectDialog Size=1518,998
-History Items[$e]=file:$HOME/data/Personal/development/mymelu.chat-mobile-social-redesign,file:$HOME/data/Personal/development/stillthinking.net,file:$HOME/data/Personal/development/stillthinking.net,file:$HOME/data/Personal/development/knowledgebase,file:$HOME/data/Personal/development/knowledgebase,file:$HOME/data/Personal/development/knowledgebase,file:///mnt/data/storage/comfyui/gens/characters/luna/insta/reels/tokyo-miyajima,file:///mnt/data/storage/comfyui/resources/faces,file:///mnt/data/development/PDAL/build,file:///mnt/data/development/PDAL,file:///mnt/data-server/comfyui/resources/faces,file:///mnt/data-server/comfyui/resources/faces/,file:$HOME/stv,file:///mnt/data/vaults/stv,file:///mnt/data,file:///mnt/data/stv,file:///mnt/gmail,file:///mnt/gmail/%5BGmail%5D,file:///mnt/data-server/vaults/pablo,file:///media/pelias/data,file:///media/pelias/data/pwork,file:$HOME/data,file:$HOME/Personal/datap,file:$HOME/Personal/pdata,file:$HOME
-Splitter State=\x00\x00\x00\xff\x00\x00\x00\x01\x00\x00\x00\x02\x00\x00\x00\x8c\x00\x00\x02\xa8\x00\xff\xff\xff\xff\x01\x00\x00\x00\x01\x00
-
 [General]
 BrowserApplication=google-chrome.desktop
 ColorSchemeHash=2c3f86428c11011a7c64ee1e7f47c274d498ff10
 
 [KDE]
-AnimationDurationFactor=0
+AnimationDurationFactor=0.08838834764831843
 LookAndFeelPackage=org.kde.breezedark.desktop
+widgetStyle=Breeze
 
 [KFileDialog Settings]
 Allow Expansion=false
@@ -158,7 +154,7 @@ Show hidden files=false
 Sort by=Date
 Sort directories first=true
 Sort hidden files last=false
-Sort reversed=false
+Sort reversed=true
 Speedbar Width=140
 View Style=Detail
 

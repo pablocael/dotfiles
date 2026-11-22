@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Events and Tasks Reminders
+Exec=/usr/libexec/evolution-data-server/evolution-alarm-notify
+Hidden=true
+X-GNOME-Autostart-enabled=false
