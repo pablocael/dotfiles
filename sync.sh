@@ -56,8 +56,9 @@ DIRS=(
   .local/share/kwin
   # login autostart overrides (Hidden=true entries that keep junk off startup)
   .config/autostart
-  # PipeWire/WirePlumber drop-ins (BT sink never suspends, no HFP autoswitch)
-  .config/wireplumber
+  # PipeWire/WirePlumber drop-ins (BT sink never suspends, no HFP autoswitch,
+  # Playwright test-browser audio goes to a silent sink instead of the earbuds)
+  .config/wireplumber .config/pipewire
   # monitor layout / scaling
   .local/share/kscreen
 )
@@ -176,7 +177,16 @@ cmd_restore() {
   for s in "${USER_MASKS[@]}"; do
     systemctl --user mask "$s" >/dev/null 2>&1 && echo "  -> masked user unit: $s"
   done
-  systemctl --user restart wireplumber >/dev/null 2>&1 || true
+  # test-browser streams -> silent sink: the route lives in WirePlumber's state
+  # file (keyed by the media.role the 53-test-browsers-mute.conf rule assigns)
+  local wpstate="$HOME/.local/state/wireplumber/stream-properties"
+  systemctl --user stop wireplumber >/dev/null 2>&1 || true
+  if ! grep -q '^Output/Audio:media.role:test-browser=' "$wpstate" 2>/dev/null; then
+    mkdir -p "$(dirname "$wpstate")"; [ -s "$wpstate" ] || echo '[stream-properties]' > "$wpstate"
+    echo 'Output/Audio:media.role:test-browser={"target":"test-browsers-mute"}' >> "$wpstate"
+    echo "  -> test-browser audio routed to the silent sink"
+  fi
+  systemctl --user start wireplumber >/dev/null 2>&1 || true
   echo "Restore complete. Log out/in (or restart plasmashell & kwin) for KDE changes."
 }
 
