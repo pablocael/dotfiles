@@ -1,4 +1,3 @@
-aria2c latest/stable
 bare latest/stable
 core18 latest/stable
 core20 latest/stable
@@ -13,8 +12,6 @@ gtk-common-themes latest/stable/…
 gtk-theme-breeze latest/stable/…
 icon-theme-breeze latest/stable/…
 identity latest/stable
-kubectl latest/stable
-kubectx latest/stable
 marktext latest/stable
 mesa-2404 latest/stable
 obsidian latest/stable

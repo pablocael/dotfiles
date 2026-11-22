@@ -6,6 +6,7 @@ RightPadding=426
 [General]
 GlobalViewProps=true
 OpenExternallyCalledFolderInNewTab=true
+RememberOpenedTabs=false
 Version=202
 ViewPropsTimestamp=2025,8,10,9,4,38.99
 

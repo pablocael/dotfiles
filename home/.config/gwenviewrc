@@ -11,26 +11,26 @@ MenuBar=Disabled
 PrintHeight=15
 
 [Recent Files]
-File1[$e]=/mnt/data/Personal/development/video-editor/marketing/v4/shared/price-statics-editorial-20261122/SHEET.jpg
-File10[$e]=/mnt/data/kino-release-evidence/oncall-1121/next-release-1122/seedream-linking/s3_sheet.png
-File2[$e]=/mnt/data/Personal/development/video-editor/marketing/v4/shared/price-statics-centered-cards-20261122/SHEET.jpg
-File3[$e]=/mnt/data/Personal/development/video-editor/marketing/v4/shared/price-statics-designer-20261122/SHEET.jpg
-File4[$e]=/mnt/data/Personal/development/video-editor/marketing/v4/shared/price-statics-anuncios-20261122/SHEET.jpg
-File5[$e]=/mnt/data/Personal/development/video-editor/marketing/v4/shared/price-statics-seu-anuncio-20261122/SHEET.jpg
-File6[$e]=/mnt/data/kino-release-evidence/oncall-1121/plans-desktop/compare-1366-pt.png
-File7[$e]=/mnt/data/kino-release-evidence/oncall-1121/plans-desktop/compare-1920-pt.png
-File8[$e]=/mnt/data/kino-release-evidence/oncall-1121/next-release-1122/seedream-linking/s1_sheet.png
-File9[$e]=/mnt/data/kino-release-evidence/oncall-1121/next-release-1122/seedream-linking/s2_sheet.png
-Name1[$e]=SHEET.jpg
-Name10[$e]=s3_sheet.png
-Name2[$e]=SHEET.jpg
-Name3[$e]=SHEET.jpg
-Name4[$e]=SHEET.jpg
-Name5[$e]=SHEET.jpg
-Name6[$e]=compare-1366-pt.png
-Name7[$e]=compare-1920-pt.png
-Name8[$e]=s1_sheet.png
-Name9[$e]=s2_sheet.png
+File1[$e]=/mnt/data/kino-release-evidence/oncall-1121/next-release-1122/seedream-linking/s1_sheet.png
+File10[$e]=$HOME/data/Personal/development/video-editor/marketing/v4/shared/price-statics-seu-anuncio-20261122-r10-r40/S-price-clip-b-1080x1350.jpg
+File2[$e]=/mnt/data/kino-release-evidence/oncall-1121/next-release-1122/seedream-linking/s2_sheet.png
+File3[$e]=/mnt/data/kino-release-evidence/oncall-1121/next-release-1122/seedream-linking/s3_sheet.png
+File4[$e]=/mnt/data/kino-release-evidence/oncall-1121/next-release-1122/landing-cta/button-design/button-options.png
+File5[$e]=/mnt/data/kino-release-evidence/2026-11-18-tutorial-batch/resume-1122/frames/07-pt-sheet.jpg
+File6[$e]=$HOME/data/Personal/development/video-editor/marketing/v4/shared/price-statics-seu-anuncio-20261122-r9-r35/compare.png
+File7[$e]=$HOME/data/Personal/development/video-editor/marketing/v4/shared/price-statics-seu-anuncio-20261122-r10-r40/compare.png
+File8[$e]=$HOME/data/Personal/development/video-editor/marketing/v4/shared/price-statics-seu-anuncio-20261122-r10-r40/S-price-clip-a-1080x1350.jpg
+File9[$e]=$HOME/data/Personal/development/video-editor/marketing/v4/shared/price-statics-seu-anuncio-20261122-r10-r40/phone-preview.png
+Name1[$e]=s1_sheet.png
+Name10[$e]=S-price-clip-b-1080x1350.jpg
+Name2[$e]=s2_sheet.png
+Name3[$e]=s3_sheet.png
+Name4[$e]=button-options.png
+Name5[$e]=07-pt-sheet.jpg
+Name6[$e]=compare.png
+Name7[$e]=compare.png
+Name8[$e]=S-price-clip-a-1080x1350.jpg
+Name9[$e]=phone-preview.png
 
 [SemanticInfoDialog]
 2560x1440 screen: Height=289
