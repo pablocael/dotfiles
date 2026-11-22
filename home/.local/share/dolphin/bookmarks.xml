@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xbel>
+<xbel xmlns:bookmark="http://www.freedesktop.org/standards/desktop-bookmarks">
+ <folder folded="no">
+  <title>Kino</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="folder-violet" />
+   </metadata>
+  </info>
+  <bookmark href="file:///home/pelias/data/Personal/development/video-editor">
+   <title>video-editor</title>
+   <info>
+    <metadata owner="http://freedesktop.org">
+     <bookmark:icon name="folder-violet" />
+    </metadata>
+   </info>
+  </bookmark>
+  <bookmark href="file:///home/pelias/data/Personal/development/video-editor/marketing">
+   <title>marketing</title>
+   <info>
+    <metadata owner="http://freedesktop.org">
+     <bookmark:icon name="folder-violet" />
+    </metadata>
+   </info>
+  </bookmark>
+  <bookmark href="file:///mnt/data/kino-release-evidence">
+   <title>release evidence</title>
+   <info>
+    <metadata owner="http://freedesktop.org">
+     <bookmark:icon name="folder-violet" />
+    </metadata>
+   </info>
+  </bookmark>
+  <bookmark href="file:///mnt/data-server/public/Videos/Kino">
+   <title>NAS: Kino videos</title>
+   <info>
+    <metadata owner="http://freedesktop.org">
+     <bookmark:icon name="folder-violet" />
+    </metadata>
+   </info>
+  </bookmark>
+  <bookmark href="file:///mnt/data-server/public/Documents/Kino">
+   <title>NAS: Kino documents</title>
+   <info>
+    <metadata owner="http://freedesktop.org">
+     <bookmark:icon name="folder-violet" />
+    </metadata>
+   </info>
+  </bookmark>
+ </folder>
+ <folder folded="no">
+  <title>Work</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="folder-orange" />
+   </metadata>
+  </info>
+  <bookmark href="file:///mnt/data/development">
+   <title>development</title>
+   <info>
+    <metadata owner="http://freedesktop.org">
+     <bookmark:icon name="folder-orange" />
+    </metadata>
+   </info>
+  </bookmark>
+  <bookmark href="file:///mnt/data/development/fleet3d">
+   <title>fleet3d</title>
+   <info>
+    <metadata owner="http://freedesktop.org">
+     <bookmark:icon name="folder-orange" />
+    </metadata>
+   </info>
+  </bookmark>
+  <bookmark href="file:///mnt/data/development/fleet3d-lib">
+   <title>fleet3d-lib</title>
+   <info>
+    <metadata owner="http://freedesktop.org">
+     <bookmark:icon name="folder-orange" />
+    </metadata>
+   </info>
+  </bookmark>
+  <bookmark href="file:///mnt/data/development/env2fleet">
+   <title>env2fleet</title>
+   <info>
+    <metadata owner="http://freedesktop.org">
+     <bookmark:icon name="folder-orange" />
+    </metadata>
+   </info>
+  </bookmark>
+  <bookmark href="file:///mnt/data/development/ativo-management">
+   <title>ativo-management</title>
+   <info>
+    <metadata owner="http://freedesktop.org">
+     <bookmark:icon name="folder-orange" />
+    </metadata>
+   </info>
+  </bookmark>
+  <bookmark href="file:///mnt/data/development/infra-clusters">
+   <title>infra-clusters</title>
+   <info>
+    <metadata owner="http://freedesktop.org">
+     <bookmark:icon name="folder-orange" />
+    </metadata>
+   </info>
+  </bookmark>
+ </folder>
+ <folder folded="no">
+  <title>Personal</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="folder-blue" />
+   </metadata>
+  </info>
+  <bookmark href="file:///home/pelias/data/Personal">
+   <title>Personal</title>
+   <info>
+    <metadata owner="http://freedesktop.org">
+     <bookmark:icon name="folder-blue" />
+    </metadata>
+   </info>
+  </bookmark>
+  <bookmark href="file:///home/pelias/data/Personal/development">
+   <title>Personal development</title>
+   <info>
+    <metadata owner="http://freedesktop.org">
+     <bookmark:icon name="folder-blue" />
+    </metadata>
+   </info>
+  </bookmark>
+  <bookmark href="file:///home/pelias/data/Personal/development/dotfiles">
+   <title>dotfiles</title>
+   <info>
+    <metadata owner="http://freedesktop.org">
+     <bookmark:icon name="folder-blue" />
+    </metadata>
+   </info>
+  </bookmark>
+  <bookmark href="file:///home/pelias/data/Personal/development/mymelu.chat">
+   <title>mymelu.chat</title>
+   <info>
+    <metadata owner="http://freedesktop.org">
+     <bookmark:icon name="folder-blue" />
+    </metadata>
+   </info>
+  </bookmark>
+ </folder>
+ <folder folded="no">
+  <title>NAS</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="folder-network" />
+   </metadata>
+  </info>
+  <bookmark href="file:///mnt/data-server/public">
+   <title>public</title>
+   <info>
+    <metadata owner="http://freedesktop.org">
+     <bookmark:icon name="folder-network" />
+    </metadata>
+   </info>
+  </bookmark>
+  <bookmark href="file:///mnt/data-server/development">
+   <title>development backup</title>
+   <info>
+    <metadata owner="http://freedesktop.org">
+     <bookmark:icon name="folder-network" />
+    </metadata>
+   </info>
+  </bookmark>
+  <bookmark href="file:///mnt/media">
+   <title>media</title>
+   <info>
+    <metadata owner="http://freedesktop.org">
+     <bookmark:icon name="folder-network" />
+    </metadata>
+   </info>
+  </bookmark>
+ </folder>
+ <folder folded="no">
+  <title>System</title>
+  <info>
+   <metadata owner="http://freedesktop.org">
+    <bookmark:icon name="folder-grey" />
+   </metadata>
+  </info>
+  <bookmark href="file:///tmp">
+   <title>tmp</title>
+   <info>
+    <metadata owner="http://freedesktop.org">
+     <bookmark:icon name="folder-grey" />
+    </metadata>
+   </info>
+  </bookmark>
+  <bookmark href="file:///home/pelias/.config">
+   <title>.config</title>
+   <info>
+    <metadata owner="http://freedesktop.org">
+     <bookmark:icon name="folder-grey" />
+    </metadata>
+   </info>
+  </bookmark>
+  <bookmark href="file:///home/pelias/.local/share">
+   <title>.local/share</title>
+   <info>
+    <metadata owner="http://freedesktop.org">
+     <bookmark:icon name="folder-grey" />
+    </metadata>
+   </info>
+  </bookmark>
+ </folder>
+</xbel>

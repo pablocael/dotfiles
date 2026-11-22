@@ -38,6 +38,9 @@ FILES=(
   .config/mimeapps.list
   # video player (StopAfterLast: play-after-end restarts the video)
   .config/haruna/haruna.conf
+  # Dolphin / file dialogs: Places panel order + grouped Bookmarks menu
+  .local/share/user-places.xbel
+  .local/share/dolphin/bookmarks.xml
 )
 
 # --- directory configs (paths relative to $HOME) ---------------------------
