@@ -38,11 +38,6 @@ FILES=(
   .config/mimeapps.list
   # video player (StopAfterLast: play-after-end restarts the video)
   .config/haruna/haruna.conf
-  # Google Drive: rclone mount unit + "New Google Doc/Sheet/Slides" helper.
-  # NOT ~/.config/rclone (holds the OAuth token) — after a reinstall run
-  # `rclone config` again (remotes gdrive / gdrive-shareddrives / gdrive-all).
-  .config/systemd/user/rclone-gdrive.service
-  .local/bin/gdrive-new
   # Dolphin / file dialogs: Places panel order + grouped Bookmarks menu
   .local/share/user-places.xbel
   .local/share/dolphin/bookmarks.xml
@@ -64,8 +59,6 @@ DIRS=(
   # PipeWire/WirePlumber drop-ins (BT sink never suspends, no HFP autoswitch,
   # Playwright test-browser audio goes to a silent sink instead of the earbuds)
   .config/wireplumber .config/pipewire
-  # Dolphin right-click menus (New Google file)
-  .local/share/kio/servicemenus
   # monitor layout / scaling
   .local/share/kscreen
 )
